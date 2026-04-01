@@ -44,16 +44,12 @@ public class FrmClasse extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        lblAnno.setFont(new java.awt.Font("Segoe UI Historic", 0, 12)); // NOI18N
         lblAnno.setText("Anno");
 
-        lblSezione.setFont(new java.awt.Font("Segoe UI Historic", 0, 12)); // NOI18N
         lblSezione.setText("Sezione");
 
-        lblIndirizzo.setFont(new java.awt.Font("Segoe UI Historic", 0, 12)); // NOI18N
         lblIndirizzo.setText("Indirizzo");
 
-        btnCrea.setFont(new java.awt.Font("Segoe UI Historic", 0, 12)); // NOI18N
         btnCrea.setText("Crea classe");
 
         btnAvanti.setText(">");
@@ -126,7 +122,7 @@ public class FrmClasse extends javax.swing.JFrame {
             .addGroup(pnlCreazioneClasseLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(lblCreazioneClasse)
-                .addContainerGap(81, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlCreazioneClasseLayout.setVerticalGroup(
             pnlCreazioneClasseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

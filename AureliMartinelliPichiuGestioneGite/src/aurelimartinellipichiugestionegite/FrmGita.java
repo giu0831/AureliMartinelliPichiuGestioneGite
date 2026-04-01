@@ -56,7 +56,7 @@ public class FrmGita extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(lblCreazioneClasse)
-                .addContainerGap(91, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -69,16 +69,12 @@ public class FrmGita extends javax.swing.JFrame {
         getContentPane().add(jPanel2);
         jPanel2.setBounds(0, 0, 233, 59);
 
-        lblDestinazione.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         lblDestinazione.setText("Destinazione");
 
-        lblDurata.setFont(new java.awt.Font("Segoe UI Historic", 0, 12)); // NOI18N
         lblDurata.setText("Durata");
 
-        lblPrezzo.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
         lblPrezzo.setText("Prezzo");
 
-        btnCrea.setFont(new java.awt.Font("Segoe UI Historic", 0, 12)); // NOI18N
         btnCrea.setText("Crea gita");
 
         btnIndietro.setText("<");
