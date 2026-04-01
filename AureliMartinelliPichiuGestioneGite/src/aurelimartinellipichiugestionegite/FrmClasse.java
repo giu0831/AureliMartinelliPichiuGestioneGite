@@ -126,7 +126,7 @@ public class FrmClasse extends javax.swing.JFrame {
             .addGroup(pnlCreazioneClasseLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(lblCreazioneClasse)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(81, Short.MAX_VALUE))
         );
         pnlCreazioneClasseLayout.setVerticalGroup(
             pnlCreazioneClasseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
