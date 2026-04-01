@@ -37,6 +37,7 @@ public class FrmPartecipazione extends javax.swing.JFrame {
         lblPartecipazione = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+<<<<<<< HEAD
 
         tblAlunno.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -131,6 +132,9 @@ public class FrmPartecipazione extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(pnlPartecipazione, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
+=======
+        getContentPane().setLayout(null);
+>>>>>>> 182a9cbab47e8fcd5efbada4beafff139e9008d1
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

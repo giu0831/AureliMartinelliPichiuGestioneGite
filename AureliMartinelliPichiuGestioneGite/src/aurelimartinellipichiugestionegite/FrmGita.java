@@ -42,6 +42,7 @@ public class FrmGita extends javax.swing.JFrame {
         btnAvanti = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(null);
 
         jPanel2.setBackground(new java.awt.Color(153, 204, 255));
 
@@ -65,7 +66,13 @@ public class FrmGita extends javax.swing.JFrame {
                 .addGap(16, 16, 16))
         );
 
+<<<<<<< HEAD
         lblDestinazione.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+=======
+        getContentPane().add(jPanel2);
+        jPanel2.setBounds(0, 0, 233, 59);
+
+>>>>>>> 182a9cbab47e8fcd5efbada4beafff139e9008d1
         lblDestinazione.setText("Destinazione");
 
         lblDurata.setFont(new java.awt.Font("Segoe UI Historic", 0, 12)); // NOI18N
@@ -134,23 +141,11 @@ public class FrmGita extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAvanti)
                     .addComponent(btnIndietro))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(0, 53, 233, 290);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
