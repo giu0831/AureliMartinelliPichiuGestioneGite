@@ -28,17 +28,127 @@ public class FrmAlunni extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        pnlAlunni = new javax.swing.JPanel();
+        pnlAlunniTitolo = new javax.swing.JPanel();
+        lblAlunni = new javax.swing.JLabel();
+        lblNome = new javax.swing.JLabel();
+        lblCognome = new javax.swing.JLabel();
+        lblClasse = new javax.swing.JLabel();
+        txtNome = new javax.swing.JTextField();
+        txtCognome = new javax.swing.JTextField();
+        cmbClasse = new javax.swing.JComboBox<>();
+        btnCaricaAlunni = new javax.swing.JButton();
+        btnIndietro = new javax.swing.JButton();
+        btnAvanti = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        pnlAlunniTitolo.setBackground(new java.awt.Color(153, 204, 255));
+
+        lblAlunni.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblAlunni.setText("Alunni");
+
+        javax.swing.GroupLayout pnlAlunniTitoloLayout = new javax.swing.GroupLayout(pnlAlunniTitolo);
+        pnlAlunniTitolo.setLayout(pnlAlunniTitoloLayout);
+        pnlAlunniTitoloLayout.setHorizontalGroup(
+            pnlAlunniTitoloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlAlunniTitoloLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(lblAlunni)
+                .addContainerGap(130, Short.MAX_VALUE))
+        );
+        pnlAlunniTitoloLayout.setVerticalGroup(
+            pnlAlunniTitoloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlAlunniTitoloLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(lblAlunni)
+                .addContainerGap(29, Short.MAX_VALUE))
+        );
+
+        lblNome.setText("Nome");
+
+        lblCognome.setText("Cognome");
+
+        lblClasse.setText("Classe");
+
+        cmbClasse.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        btnCaricaAlunni.setText("Carica Alunno");
+
+        btnIndietro.setText("<");
+
+        btnAvanti.setText(">");
+
+        javax.swing.GroupLayout pnlAlunniLayout = new javax.swing.GroupLayout(pnlAlunni);
+        pnlAlunni.setLayout(pnlAlunniLayout);
+        pnlAlunniLayout.setHorizontalGroup(
+            pnlAlunniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlAlunniLayout.createSequentialGroup()
+                .addComponent(pnlAlunniTitolo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlAlunniLayout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addGroup(pnlAlunniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlAlunniLayout.createSequentialGroup()
+                        .addComponent(lblClasse)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cmbClasse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlAlunniLayout.createSequentialGroup()
+                        .addGroup(pnlAlunniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblNome)
+                            .addComponent(lblCognome))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(pnlAlunniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtCognome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(27, 27, 27))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlAlunniLayout.createSequentialGroup()
+                .addGap(7, 7, 7)
+                .addComponent(btnCaricaAlunni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(8, 8, 8))
+            .addGroup(pnlAlunniLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnIndietro, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnAvanti, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        pnlAlunniLayout.setVerticalGroup(
+            pnlAlunniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlAlunniLayout.createSequentialGroup()
+                .addComponent(pnlAlunniTitolo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(pnlAlunniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblNome)
+                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(pnlAlunniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblCognome)
+                    .addComponent(txtCognome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(pnlAlunniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblClasse)
+                    .addComponent(cmbClasse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(btnCaricaAlunni)
+                .addGap(18, 18, 18)
+                .addGroup(pnlAlunniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnIndietro)
+                    .addComponent(btnAvanti))
+                .addGap(0, 19, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(pnlAlunni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(pnlAlunni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -70,5 +180,17 @@ public class FrmAlunni extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAvanti;
+    private javax.swing.JButton btnCaricaAlunni;
+    private javax.swing.JButton btnIndietro;
+    private javax.swing.JComboBox<String> cmbClasse;
+    private javax.swing.JLabel lblAlunni;
+    private javax.swing.JLabel lblClasse;
+    private javax.swing.JLabel lblCognome;
+    private javax.swing.JLabel lblNome;
+    private javax.swing.JPanel pnlAlunni;
+    private javax.swing.JPanel pnlAlunniTitolo;
+    private javax.swing.JTextField txtCognome;
+    private javax.swing.JTextField txtNome;
     // End of variables declaration//GEN-END:variables
 }

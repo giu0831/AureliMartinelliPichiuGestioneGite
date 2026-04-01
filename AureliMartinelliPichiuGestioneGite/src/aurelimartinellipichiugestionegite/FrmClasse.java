@@ -43,12 +43,16 @@ public class FrmClasse extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        lblAnno.setFont(new java.awt.Font("Segoe UI Historic", 0, 12)); // NOI18N
         lblAnno.setText("Anno");
 
+        lblSezione.setFont(new java.awt.Font("Segoe UI Historic", 0, 12)); // NOI18N
         lblSezione.setText("Sezione");
 
+        lblIndirizzo.setFont(new java.awt.Font("Segoe UI Historic", 0, 12)); // NOI18N
         lblIndirizzo.setText("Indirizzo");
 
+        btnCrea.setFont(new java.awt.Font("Segoe UI Historic", 0, 12)); // NOI18N
         btnCrea.setText("Crea classe");
 
         btnAvanti.setText(">");

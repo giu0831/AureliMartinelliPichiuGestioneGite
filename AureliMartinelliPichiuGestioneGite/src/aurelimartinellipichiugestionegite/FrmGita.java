@@ -65,12 +65,16 @@ public class FrmGita extends javax.swing.JFrame {
                 .addGap(16, 16, 16))
         );
 
+        lblDestinazione.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         lblDestinazione.setText("Destinazione");
 
+        lblDurata.setFont(new java.awt.Font("Segoe UI Historic", 0, 12)); // NOI18N
         lblDurata.setText("Durata");
 
+        lblPrezzo.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
         lblPrezzo.setText("Prezzo");
 
+        btnCrea.setFont(new java.awt.Font("Segoe UI Historic", 0, 12)); // NOI18N
         btnCrea.setText("Crea gita");
 
         btnIndietro.setText("<");
