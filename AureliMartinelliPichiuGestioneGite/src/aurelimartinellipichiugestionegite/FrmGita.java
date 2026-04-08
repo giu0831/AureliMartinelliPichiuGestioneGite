@@ -28,17 +28,130 @@ public class FrmGita extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        pnlCreazioneClasse = new javax.swing.JPanel();
+        lblCreazioneGita = new javax.swing.JLabel();
+        pnlMenu = new javax.swing.JPanel();
+        lblDestinazione = new javax.swing.JLabel();
+        lblDurata = new javax.swing.JLabel();
+        lblPrezzo = new javax.swing.JLabel();
+        txtDestinazione = new javax.swing.JTextField();
+        txtPrezzo = new javax.swing.JTextField();
+        btnCreaGita = new javax.swing.JButton();
+        btnAvanti = new javax.swing.JButton();
+        btnIndietro = new javax.swing.JButton();
+        txtDurata = new javax.swing.JTextField();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        pnlCreazioneClasse.setBackground(new java.awt.Color(153, 204, 255));
+
+        lblCreazioneGita.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblCreazioneGita.setText("Creazione gita");
+
+        javax.swing.GroupLayout pnlCreazioneClasseLayout = new javax.swing.GroupLayout(pnlCreazioneClasse);
+        pnlCreazioneClasse.setLayout(pnlCreazioneClasseLayout);
+        pnlCreazioneClasseLayout.setHorizontalGroup(
+            pnlCreazioneClasseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlCreazioneClasseLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(lblCreazioneGita)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        pnlCreazioneClasseLayout.setVerticalGroup(
+            pnlCreazioneClasseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCreazioneClasseLayout.createSequentialGroup()
+                .addContainerGap(18, Short.MAX_VALUE)
+                .addComponent(lblCreazioneGita)
+                .addGap(16, 16, 16))
+        );
+
+        lblDestinazione.setText("Destinazione");
+
+        lblDurata.setText("Durata");
+
+        lblPrezzo.setText("Prezzo");
+
+        txtDestinazione.setColumns(5);
+
+        txtPrezzo.setColumns(5);
+
+        btnCreaGita.setText("Crea gita");
+
+        btnAvanti.setText(">");
+
+        btnIndietro.setText("<");
+
+        txtDurata.setColumns(5);
+
+        javax.swing.GroupLayout pnlMenuLayout = new javax.swing.GroupLayout(pnlMenu);
+        pnlMenu.setLayout(pnlMenuLayout);
+        pnlMenuLayout.setHorizontalGroup(
+            pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlMenuLayout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(pnlMenuLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(pnlMenuLayout.createSequentialGroup()
+                                .addComponent(btnIndietro, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnAvanti, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnCreaGita, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(pnlMenuLayout.createSequentialGroup()
+                        .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblDestinazione)
+                            .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(lblPrezzo)
+                                .addComponent(lblDurata)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtDestinazione)
+                            .addComponent(txtPrezzo)
+                            .addComponent(txtDurata, javax.swing.GroupLayout.Alignment.TRAILING))))
+                .addContainerGap(40, Short.MAX_VALUE))
+        );
+        pnlMenuLayout.setVerticalGroup(
+            pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlMenuLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblDestinazione)
+                    .addComponent(txtDestinazione, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(33, 33, 33)
+                .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblDurata)
+                    .addComponent(txtDurata, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(33, 33, 33)
+                .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblPrezzo)
+                    .addComponent(txtPrezzo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
+                .addComponent(btnCreaGita)
+                .addGap(18, 18, 18)
+                .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAvanti)
+                    .addComponent(btnIndietro))
+                .addContainerGap(22, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(pnlCreazioneClasse, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(pnlCreazioneClasse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(pnlMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -70,5 +183,17 @@ public class FrmGita extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAvanti;
+    private javax.swing.JButton btnCreaGita;
+    private javax.swing.JButton btnIndietro;
+    private javax.swing.JLabel lblCreazioneGita;
+    private javax.swing.JLabel lblDestinazione;
+    private javax.swing.JLabel lblDurata;
+    private javax.swing.JLabel lblPrezzo;
+    private javax.swing.JPanel pnlCreazioneClasse;
+    private javax.swing.JPanel pnlMenu;
+    private javax.swing.JTextField txtDestinazione;
+    private javax.swing.JTextField txtDurata;
+    private javax.swing.JTextField txtPrezzo;
     // End of variables declaration//GEN-END:variables
 }

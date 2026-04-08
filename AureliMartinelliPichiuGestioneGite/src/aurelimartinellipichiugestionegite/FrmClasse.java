@@ -35,7 +35,7 @@ public class FrmClasse extends javax.swing.JFrame {
         txtAnno = new javax.swing.JTextField();
         txtSezione = new javax.swing.JTextField();
         txtIndirizzo = new javax.swing.JTextField();
-        btnCrea = new javax.swing.JButton();
+        btnCreaClasse = new javax.swing.JButton();
         btnAvanti = new javax.swing.JButton();
         btnIndietro = new javax.swing.JButton();
         pnlCreazioneClasse = new javax.swing.JPanel();
@@ -55,7 +55,7 @@ public class FrmClasse extends javax.swing.JFrame {
 
         txtIndirizzo.setColumns(5);
 
-        btnCrea.setText("Crea classe");
+        btnCreaClasse.setText("Crea classe");
 
         btnAvanti.setText(">");
 
@@ -67,17 +67,6 @@ public class FrmClasse extends javax.swing.JFrame {
             pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlMenuLayout.createSequentialGroup()
                 .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlMenuLayout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblIndirizzo)
-                            .addComponent(lblSezione)
-                            .addComponent(lblAnno))
-                        .addGap(52, 52, 52)
-                        .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtAnno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtSezione, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtIndirizzo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(pnlMenuLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -85,7 +74,22 @@ public class FrmClasse extends javax.swing.JFrame {
                                 .addComponent(btnIndietro, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnAvanti, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(btnCrea, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(btnCreaClasse, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlMenuLayout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblSezione)
+                            .addGroup(pnlMenuLayout.createSequentialGroup()
+                                .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblIndirizzo)
+                                    .addGroup(pnlMenuLayout.createSequentialGroup()
+                                        .addComponent(lblAnno)
+                                        .addGap(11, 11, 11)))
+                                .addGap(52, 52, 52)
+                                .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtAnno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtSezione, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtIndirizzo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(40, Short.MAX_VALUE))
         );
         pnlMenuLayout.setVerticalGroup(
@@ -104,7 +108,7 @@ public class FrmClasse extends javax.swing.JFrame {
                     .addComponent(lblIndirizzo)
                     .addComponent(txtIndirizzo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
-                .addComponent(btnCrea)
+                .addComponent(btnCreaClasse)
                 .addGap(18, 18, 18)
                 .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAvanti)
@@ -184,7 +188,7 @@ public class FrmClasse extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAvanti;
-    private javax.swing.JButton btnCrea;
+    private javax.swing.JButton btnCreaClasse;
     private javax.swing.JButton btnIndietro;
     private javax.swing.JLabel lblAnno;
     private javax.swing.JLabel lblCreazioneClasse;
