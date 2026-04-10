@@ -37,5 +37,7 @@ public class Studente {
     public Classe getClasse() {
         return classe;
     }
+
+ 
     
 }

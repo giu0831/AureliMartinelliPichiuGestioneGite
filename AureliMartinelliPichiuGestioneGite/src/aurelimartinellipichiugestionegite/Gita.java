@@ -18,7 +18,7 @@ public class Gita {
         this.durata = durata;
         this.prezzo = prezzo;
     }
-
+    
     public String getDestinazione() {
         return destinazione;
     }
@@ -30,5 +30,4 @@ public class Gita {
     public int getPrezzo() {
         return prezzo;
     }
-    
 }
