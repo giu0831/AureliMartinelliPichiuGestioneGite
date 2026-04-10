@@ -40,6 +40,11 @@ public class FrmGita extends javax.swing.JFrame {
         btnAvanti = new javax.swing.JButton();
         btnIndietro = new javax.swing.JButton();
         txtDurata = new javax.swing.JTextField();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        tableStudenti2 = new javax.swing.JTable();
+        cmbStudente1 = new javax.swing.JComboBox<>();
+        btnElimina1 = new javax.swing.JButton();
+        btnCreaGita1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -53,32 +58,38 @@ public class FrmGita extends javax.swing.JFrame {
         pnlCreazioneClasseLayout.setHorizontalGroup(
             pnlCreazioneClasseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlCreazioneClasseLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(32, 32, 32)
                 .addComponent(lblCreazioneGita)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlCreazioneClasseLayout.setVerticalGroup(
             pnlCreazioneClasseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCreazioneClasseLayout.createSequentialGroup()
-                .addContainerGap(18, Short.MAX_VALUE)
+            .addGroup(pnlCreazioneClasseLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
                 .addComponent(lblCreazioneGita)
-                .addGap(16, 16, 16))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
+        lblDestinazione.setFont(new java.awt.Font("Segoe UI Light", 1, 12)); // NOI18N
         lblDestinazione.setText("Destinazione");
 
+        lblDurata.setFont(new java.awt.Font("Segoe UI Light", 1, 12)); // NOI18N
         lblDurata.setText("Durata");
 
+        lblPrezzo.setFont(new java.awt.Font("Segoe UI Light", 1, 12)); // NOI18N
         lblPrezzo.setText("Prezzo");
 
         txtDestinazione.setColumns(5);
 
         txtPrezzo.setColumns(5);
 
+        btnCreaGita.setFont(new java.awt.Font("Segoe UI Light", 1, 12)); // NOI18N
         btnCreaGita.setText("Crea gita");
 
+        btnAvanti.setFont(new java.awt.Font("Segoe UI Light", 1, 12)); // NOI18N
         btnAvanti.setText(">");
 
+        btnIndietro.setFont(new java.awt.Font("Segoe UI Light", 1, 12)); // NOI18N
         btnIndietro.setText("<");
 
         txtDurata.setColumns(5);
@@ -88,10 +99,9 @@ public class FrmGita extends javax.swing.JFrame {
         pnlMenuLayout.setHorizontalGroup(
             pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlMenuLayout.createSequentialGroup()
-                .addGap(40, 40, 40)
                 .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(pnlMenuLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(pnlMenuLayout.createSequentialGroup()
                                 .addComponent(btnIndietro, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -100,10 +110,14 @@ public class FrmGita extends javax.swing.JFrame {
                             .addComponent(btnCreaGita, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(pnlMenuLayout.createSequentialGroup()
                         .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblDestinazione)
-                            .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(lblPrezzo)
-                                .addComponent(lblDurata)))
+                            .addGroup(pnlMenuLayout.createSequentialGroup()
+                                .addGap(40, 40, 40)
+                                .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblPrezzo)
+                                    .addComponent(lblDurata)))
+                            .addGroup(pnlMenuLayout.createSequentialGroup()
+                                .addGap(24, 24, 24)
+                                .addComponent(lblDestinazione)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtDestinazione)
@@ -135,23 +149,77 @@ public class FrmGita extends javax.swing.JFrame {
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
+        tableStudenti2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Studente", "Classe", "Gita"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane6.setViewportView(tableStudenti2);
+
+        cmbStudente1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        btnElimina1.setFont(new java.awt.Font("Segoe UI Light", 1, 12)); // NOI18N
+        btnElimina1.setText("Elimina");
+
+        btnCreaGita1.setFont(new java.awt.Font("Segoe UI Light", 1, 12)); // NOI18N
+        btnCreaGita1.setText("Crea gita");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(pnlCreazioneClasse, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnlMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(19, 19, 19)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(cmbStudente1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(93, 93, 93)
+                        .addComponent(btnCreaGita1)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnElimina1))
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(pnlMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 20, Short.MAX_VALUE))
+            .addComponent(pnlCreazioneClasse, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
                 .addComponent(pnlCreazioneClasse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(pnlMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cmbStudente1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCreaGita1)
+                            .addComponent(btnElimina1)))
+                    .addComponent(pnlMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         pack();
@@ -185,13 +253,18 @@ public class FrmGita extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAvanti;
     private javax.swing.JButton btnCreaGita;
+    private javax.swing.JButton btnCreaGita1;
+    private javax.swing.JButton btnElimina1;
     private javax.swing.JButton btnIndietro;
+    private javax.swing.JComboBox<String> cmbStudente1;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JLabel lblCreazioneGita;
     private javax.swing.JLabel lblDestinazione;
     private javax.swing.JLabel lblDurata;
     private javax.swing.JLabel lblPrezzo;
     private javax.swing.JPanel pnlCreazioneClasse;
     private javax.swing.JPanel pnlMenu;
+    private javax.swing.JTable tableStudenti2;
     private javax.swing.JTextField txtDestinazione;
     private javax.swing.JTextField txtDurata;
     private javax.swing.JTextField txtPrezzo;

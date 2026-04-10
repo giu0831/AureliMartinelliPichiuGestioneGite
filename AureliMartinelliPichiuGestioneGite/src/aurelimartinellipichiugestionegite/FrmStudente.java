@@ -40,6 +40,12 @@ public class FrmStudente extends javax.swing.JFrame {
         btnAvanti = new javax.swing.JButton();
         btnIndietro = new javax.swing.JButton();
         cmbClasse = new javax.swing.JComboBox<>();
+        btnMostraTutto = new javax.swing.JButton();
+        btnConferma = new javax.swing.JButton();
+        btnCreaStudente1 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tableStudenti = new javax.swing.JTable();
+        cmbClasse1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -55,30 +61,36 @@ public class FrmStudente extends javax.swing.JFrame {
             .addGroup(pnlCreazioneClasseLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(lblCreazioneStudente)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(437, Short.MAX_VALUE))
         );
         pnlCreazioneClasseLayout.setVerticalGroup(
             pnlCreazioneClasseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCreazioneClasseLayout.createSequentialGroup()
-                .addContainerGap(18, Short.MAX_VALUE)
+                .addContainerGap(24, Short.MAX_VALUE)
                 .addComponent(lblCreazioneStudente)
                 .addGap(16, 16, 16))
         );
 
+        lblNome.setFont(new java.awt.Font("Segoe UI Light", 1, 12)); // NOI18N
         lblNome.setText("Nome");
 
+        lblCognome.setFont(new java.awt.Font("Segoe UI Light", 1, 12)); // NOI18N
         lblCognome.setText("Cognome");
 
+        lblClasse.setFont(new java.awt.Font("Segoe UI Light", 1, 12)); // NOI18N
         lblClasse.setText("Classe");
 
         txtNome.setColumns(5);
 
         txtCognome.setColumns(5);
 
+        btnCreaStudente.setFont(new java.awt.Font("Segoe UI Light", 1, 12)); // NOI18N
         btnCreaStudente.setText("Crea studente");
 
+        btnAvanti.setFont(new java.awt.Font("Segoe UI Light", 1, 12)); // NOI18N
         btnAvanti.setText(">");
 
+        btnIndietro.setFont(new java.awt.Font("Segoe UI Light", 1, 12)); // NOI18N
         btnIndietro.setText("<");
 
         cmbClasse.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -109,7 +121,7 @@ public class FrmStudente extends javax.swing.JFrame {
                             .addComponent(cmbClasse, 0, 1, Short.MAX_VALUE)
                             .addComponent(txtNome)
                             .addComponent(txtCognome))))
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         pnlMenuLayout.setVerticalGroup(
             pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -135,24 +147,85 @@ public class FrmStudente extends javax.swing.JFrame {
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
+        btnMostraTutto.setFont(new java.awt.Font("Segoe UI Light", 1, 12)); // NOI18N
+        btnMostraTutto.setText("Mostra tutto");
+
+        btnConferma.setFont(new java.awt.Font("Segoe UI Light", 1, 12)); // NOI18N
+        btnConferma.setText("✓");
+
+        btnCreaStudente1.setFont(new java.awt.Font("Segoe UI Light", 1, 12)); // NOI18N
+        btnCreaStudente1.setText("Crea studente");
+
+        tableStudenti.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Nome", "Cognome", "Classe"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(tableStudenti);
+
+        cmbClasse1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, 0)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(pnlCreazioneClasse, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnlMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnMostraTutto)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnConferma)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cmbClasse1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)
+                        .addComponent(btnCreaStudente1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pnlMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addComponent(pnlCreazioneClasse, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
                 .addComponent(pnlCreazioneClasse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(pnlMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(15, 15, 15)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pnlMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cmbClasse1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnConferma)
+                            .addComponent(btnMostraTutto)
+                            .addComponent(btnCreaStudente1))))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
 
         pack();
@@ -185,15 +258,21 @@ public class FrmStudente extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAvanti;
+    private javax.swing.JButton btnConferma;
     private javax.swing.JButton btnCreaStudente;
+    private javax.swing.JButton btnCreaStudente1;
     private javax.swing.JButton btnIndietro;
+    private javax.swing.JButton btnMostraTutto;
     private javax.swing.JComboBox<String> cmbClasse;
+    private javax.swing.JComboBox<String> cmbClasse1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblClasse;
     private javax.swing.JLabel lblCognome;
     private javax.swing.JLabel lblCreazioneStudente;
     private javax.swing.JLabel lblNome;
     private javax.swing.JPanel pnlCreazioneClasse;
     private javax.swing.JPanel pnlMenu;
+    private javax.swing.JTable tableStudenti;
     private javax.swing.JTextField txtCognome;
     private javax.swing.JTextField txtNome;
     // End of variables declaration//GEN-END:variables
