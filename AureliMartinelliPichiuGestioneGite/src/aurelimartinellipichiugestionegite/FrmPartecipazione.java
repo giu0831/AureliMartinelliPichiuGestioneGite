@@ -27,29 +27,73 @@ public class FrmPartecipazione extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        tabGite = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
+        pnlTitoloGestioneMagazzino = new javax.swing.JPanel();
+        lblGestioneMagazzino = new javax.swing.JLabel();
+        btnNuovoProdotto = new javax.swing.JButton();
+        pnlGestioneMagazzino = new javax.swing.JPanel();
+        btnVendi = new javax.swing.JButton();
+        btnElimina = new javax.swing.JButton();
+        btnRifornisci = new javax.swing.JButton();
+        btnStatistiche = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
         tableStudenti1 = new javax.swing.JTable();
         cmbStudente = new javax.swing.JComboBox<>();
-        btnElimina = new javax.swing.JButton();
+        btnElimina2 = new javax.swing.JButton();
         cmbGita = new javax.swing.JComboBox<>();
         btnLega = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tableStudenti = new javax.swing.JTable();
-        cmbClasse = new javax.swing.JComboBox<>();
-        btnMostraTutto = new javax.swing.JButton();
-        btnConferma = new javax.swing.JButton();
-        btnCreaStudente = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
-        jScrollPane6 = new javax.swing.JScrollPane();
-        tableStudenti2 = new javax.swing.JTable();
-        cmbStudente1 = new javax.swing.JComboBox<>();
-        btnElimina1 = new javax.swing.JButton();
-        btnCreaGita = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        pnlTitoloGestioneMagazzino.setBackground(new java.awt.Color(102, 102, 255));
+
+        lblGestioneMagazzino.setFont(new java.awt.Font("Yu Gothic UI Semilight", 1, 24)); // NOI18N
+        lblGestioneMagazzino.setForeground(new java.awt.Color(255, 255, 255));
+        lblGestioneMagazzino.setText("Gestione Gite");
+
+        btnNuovoProdotto.setBackground(new java.awt.Color(160, 160, 255));
+        btnNuovoProdotto.setFont(new java.awt.Font("Yu Gothic UI Semilight", 0, 14)); // NOI18N
+        btnNuovoProdotto.setForeground(new java.awt.Color(255, 255, 255));
+        btnNuovoProdotto.setText("+  BOTTONE");
+        btnNuovoProdotto.addActionListener(this::btnNuovoProdottoActionPerformed);
+
+        javax.swing.GroupLayout pnlTitoloGestioneMagazzinoLayout = new javax.swing.GroupLayout(pnlTitoloGestioneMagazzino);
+        pnlTitoloGestioneMagazzino.setLayout(pnlTitoloGestioneMagazzinoLayout);
+        pnlTitoloGestioneMagazzinoLayout.setHorizontalGroup(
+            pnlTitoloGestioneMagazzinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlTitoloGestioneMagazzinoLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(lblGestioneMagazzino)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 190, Short.MAX_VALUE)
+                .addComponent(btnNuovoProdotto, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21))
+        );
+        pnlTitoloGestioneMagazzinoLayout.setVerticalGroup(
+            pnlTitoloGestioneMagazzinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlTitoloGestioneMagazzinoLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(pnlTitoloGestioneMagazzinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnNuovoProdotto, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblGestioneMagazzino))
+                .addContainerGap(22, Short.MAX_VALUE))
+        );
+
+        pnlGestioneMagazzino.setBackground(new java.awt.Color(255, 255, 255));
+
+        btnVendi.setFont(new java.awt.Font("Yu Gothic UI Semilight", 0, 14)); // NOI18N
+        btnVendi.setText("BOTTONE");
+        btnVendi.addActionListener(this::btnVendiActionPerformed);
+
+        btnElimina.setFont(new java.awt.Font("Yu Gothic UI Semilight", 0, 14)); // NOI18N
+        btnElimina.setText("BOT");
+        btnElimina.addActionListener(this::btnEliminaActionPerformed);
+
+        btnRifornisci.setFont(new java.awt.Font("Yu Gothic UI Semilight", 0, 14)); // NOI18N
+        btnRifornisci.setText("BOTTONE");
+        btnRifornisci.addActionListener(this::btnRifornisciActionPerformed);
+
+        btnStatistiche.setFont(new java.awt.Font("Yu Gothic UI Semilight", 0, 14)); // NOI18N
+        btnStatistiche.setText("BOT");
+        btnStatistiche.addActionListener(this::btnStatisticheActionPerformed);
 
         tableStudenti1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -78,218 +122,100 @@ public class FrmPartecipazione extends javax.swing.JFrame {
             }
         });
         jScrollPane5.setViewportView(tableStudenti1);
-        if (tableStudenti1.getColumnModel().getColumnCount() > 0) {
-            tableStudenti1.getColumnModel().getColumn(0).setResizable(false);
-            tableStudenti1.getColumnModel().getColumn(1).setResizable(false);
-            tableStudenti1.getColumnModel().getColumn(2).setResizable(false);
-        }
 
         cmbStudente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        btnElimina.setText("Elimina");
+        btnElimina2.setText("Elimina");
 
         cmbGita.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         btnLega.setText("Lega");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout pnlGestioneMagazzinoLayout = new javax.swing.GroupLayout(pnlGestioneMagazzino);
+        pnlGestioneMagazzino.setLayout(pnlGestioneMagazzinoLayout);
+        pnlGestioneMagazzinoLayout.setHorizontalGroup(
+            pnlGestioneMagazzinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlGestioneMagazzinoLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(pnlGestioneMagazzinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(pnlGestioneMagazzinoLayout.createSequentialGroup()
                         .addComponent(cmbStudente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cmbGita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnLega, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnElimina))
+                        .addComponent(btnElimina2))
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20))
+                .addGap(30, 30, 30)
+                .addGroup(pnlGestioneMagazzinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnRifornisci)
+                    .addComponent(btnVendi, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnElimina, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnStatistiche, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+        pnlGestioneMagazzinoLayout.setVerticalGroup(
+            pnlGestioneMagazzinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlGestioneMagazzinoLayout.createSequentialGroup()
+                .addContainerGap(48, Short.MAX_VALUE)
+                .addComponent(btnRifornisci)
+                .addGap(39, 39, 39)
+                .addComponent(btnVendi)
+                .addGap(39, 39, 39)
+                .addComponent(btnElimina)
+                .addGap(39, 39, 39)
+                .addComponent(btnStatistiche)
+                .addGap(51, 51, 51))
+            .addGroup(pnlGestioneMagazzinoLayout.createSequentialGroup()
+                .addGap(24, 24, 24)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnlGestioneMagazzinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cmbStudente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnElimina)
+                    .addComponent(btnElimina2)
                     .addComponent(cmbGita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLega))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        tabGite.addTab("Partecipazioni", jPanel1);
-
-        tableStudenti.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "Nome", "Cognome", "Classe"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane2.setViewportView(tableStudenti);
-        if (tableStudenti.getColumnModel().getColumnCount() > 0) {
-            tableStudenti.getColumnModel().getColumn(0).setResizable(false);
-            tableStudenti.getColumnModel().getColumn(1).setResizable(false);
-            tableStudenti.getColumnModel().getColumn(2).setResizable(false);
-        }
-
-        cmbClasse.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        btnMostraTutto.setText("Mostra tutto");
-
-        btnConferma.setText("✓");
-
-        btnCreaStudente.setText("Crea studente");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(btnMostraTutto)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnConferma)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cmbClasse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnCreaStudente)
-                        .addGap(131, 131, 131))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cmbClasse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnMostraTutto)
-                    .addComponent(btnConferma)
-                    .addComponent(btnCreaStudente))
-                .addGap(20, 20, 20))
-        );
-
-        tabGite.addTab("Studenti", jPanel2);
-
-        tableStudenti2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "Studente", "Classe", "Gita"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane6.setViewportView(tableStudenti2);
-        if (tableStudenti2.getColumnModel().getColumnCount() > 0) {
-            tableStudenti2.getColumnModel().getColumn(0).setResizable(false);
-            tableStudenti2.getColumnModel().getColumn(1).setResizable(false);
-            tableStudenti2.getColumnModel().getColumn(2).setResizable(false);
-        }
-
-        cmbStudente1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        btnElimina1.setText("Elimina");
-
-        btnCreaGita.setText("Crea gita");
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(cmbStudente1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnCreaGita)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnElimina1))
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cmbStudente1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnElimina1)
-                    .addComponent(btnCreaGita))
-                .addContainerGap())
-        );
-
-        tabGite.addTab("Gite", jPanel3);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(tabGite)
-                .addContainerGap())
+            .addComponent(pnlTitoloGestioneMagazzino, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnlGestioneMagazzino, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(tabGite)
-                .addGap(0, 0, 0))
+                .addComponent(pnlTitoloGestioneMagazzino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(pnlGestioneMagazzino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnNuovoProdottoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuovoProdottoActionPerformed
+    }//GEN-LAST:event_btnNuovoProdottoActionPerformed
+
+    private void btnVendiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVendiActionPerformed
+
+    }//GEN-LAST:event_btnVendiActionPerformed
+
+    private void btnEliminaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminaActionPerformed
+
+    }//GEN-LAST:event_btnEliminaActionPerformed
+
+    private void btnRifornisciActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRifornisciActionPerformed
+
+    }//GEN-LAST:event_btnRifornisciActionPerformed
+
+    private void btnStatisticheActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStatisticheActionPerformed
+
+    }//GEN-LAST:event_btnStatisticheActionPerformed
 
     /**
      * @param args the command line arguments
@@ -317,27 +243,20 @@ public class FrmPartecipazione extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnConferma;
-    private javax.swing.JButton btnCreaGita;
-    private javax.swing.JButton btnCreaStudente;
     private javax.swing.JButton btnElimina;
-    private javax.swing.JButton btnElimina1;
+    private javax.swing.JButton btnElimina2;
     private javax.swing.JButton btnLega;
-    private javax.swing.JButton btnMostraTutto;
-    private javax.swing.JComboBox<String> cmbClasse;
+    private javax.swing.JButton btnNuovoProdotto;
+    private javax.swing.JButton btnRifornisci;
+    private javax.swing.JButton btnStatistiche;
+    private javax.swing.JButton btnVendi;
     private javax.swing.JComboBox<String> cmbGita;
     private javax.swing.JComboBox<String> cmbStudente;
-    private javax.swing.JComboBox<String> cmbStudente1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JTabbedPane tabGite;
-    private javax.swing.JTable tableStudenti;
+    private javax.swing.JLabel lblGestioneMagazzino;
+    private javax.swing.JPanel pnlGestioneMagazzino;
+    private javax.swing.JPanel pnlTitoloGestioneMagazzino;
     private javax.swing.JTable tableStudenti1;
-    private javax.swing.JTable tableStudenti2;
     // End of variables declaration//GEN-END:variables
 
 }
