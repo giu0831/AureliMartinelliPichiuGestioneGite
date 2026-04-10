@@ -5,6 +5,7 @@
 package aurelimartinellipichiugestionegite;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 /**
  *
@@ -234,5 +235,134 @@ public class GestioneDatabase {
             // o se lo studente è già iscritto a quella gita (grazie alla Primary Key composta)
             return false;
         }
+    }
+    
+    /**
+     * Restituisce la lista di tutte le classi
+     */
+    public ArrayList<Classe> getListaClassi() {
+        ArrayList<Classe> lista = new ArrayList<>();
+        String sql = "SELECT * FROM classi";
+
+        try (Connection conn = DriverManager.getConnection(url);
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+
+            while (rs.next()) {
+                // Passo direttamente rs.getInt() perché ora 'anno' è un int
+                Classe c = new Classe(
+                    rs.getInt("cla_anno"),
+                    rs.getString("cla_sezione"),
+                    rs.getString("cla_indirizzo")
+                );
+                lista.add(c);
+            }
+        } catch (SQLException e) {
+            System.out.println("Errore caricamento classi: " + e.getMessage());
+        }
+        return lista;
+    }
+
+    /**
+     * Restituisce la lista di tutti gli studenti, creando per ognuno 
+     * il rispettivo oggetto Classe al suo interno
+     */
+    public ArrayList<Studente> getListaStudenti() {
+        ArrayList<Studente> lista = new ArrayList<>();
+        String sql = "SELECT s.stu_id, s.stu_nome, s.stu_cognome, " +
+                     "c.cla_anno, c.cla_sezione, c.cla_indirizzo " +
+                     "FROM studenti s " +
+                     "JOIN classi c ON s.stu_cla_id = c.cla_id";
+
+        try (Connection conn = DriverManager.getConnection(url);
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+
+            while (rs.next()) {
+                // Creo la Classe passando l'int per l'anno
+                Classe classeDelloStudente = new Classe(
+                    rs.getInt("cla_anno"), 
+                    rs.getString("cla_sezione"), 
+                    rs.getString("cla_indirizzo")
+                );
+                
+                Studente s = new Studente(
+                    rs.getInt("stu_id"),
+                    rs.getString("stu_nome"),
+                    rs.getString("stu_cognome"),
+                    classeDelloStudente
+                );
+                lista.add(s);
+            }
+        } catch (SQLException e) {
+            System.out.println("Errore caricamento studenti: " + e.getMessage());
+        }
+        return lista;
+    }
+    
+    /**
+     * Restituisce la lista di tutte le gite disponibili
+     */
+    public ArrayList<Gita> getListaGite() {
+        ArrayList<Gita> lista = new ArrayList<>();
+        String sql = "SELECT * FROM gite";
+
+        try (Connection conn = DriverManager.getConnection(url);
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+
+            while (rs.next()) {
+                // Crea l'oggetto Gita usando i dati dal database
+                Gita g = new Gita(
+                    rs.getString("git_destinazione"),
+                    rs.getInt("git_durata"), 
+                    rs.getInt("git_prezzo")
+                );
+                lista.add(g);
+            }
+        } catch (SQLException e) {
+            System.out.println("Errore caricamento gite: " + e.getMessage());
+        }
+        return lista;
+    }
+
+    /**
+     * Restituisce la lista degli studenti iscritti a una specifica gita
+     */
+    public ArrayList<Studente> getPartecipantiGita(int idGita) {
+        ArrayList<Studente> lista = new ArrayList<>();
+        String sql = "SELECT s.stu_id, s.stu_nome, s.stu_cognome, " +
+                     "c.cla_anno, c.cla_sezione, c.cla_indirizzo " +
+                     "FROM partecipazioni p " +
+                     "JOIN studenti s ON p.par_stu_id = s.stu_id " +
+                     "JOIN classi c ON s.stu_cla_id = c.cla_id " +
+                     "WHERE p.par_git_id = ?";
+
+        try (Connection conn = DriverManager.getConnection(url);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setInt(1, idGita);
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                // Creo la Classe passando l'int per l'anno
+                Classe classeDelloStudente = new Classe(
+                    rs.getInt("cla_anno"), 
+                    rs.getString("cla_sezione"), 
+                    rs.getString("cla_indirizzo")
+                );
+                
+                Studente s = new Studente(
+                    rs.getInt("stu_id"),
+                    rs.getString("stu_nome"),
+                    rs.getString("stu_cognome"),
+                    classeDelloStudente
+                );
+                lista.add(s);
+            }
+        } catch (SQLException e) {
+            System.out.println("Errore caricamento partecipanti: " + e.getMessage());
+        }
+        return lista;
     }
 }
