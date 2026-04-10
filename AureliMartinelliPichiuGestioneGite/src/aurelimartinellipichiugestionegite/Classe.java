@@ -9,7 +9,7 @@ package aurelimartinellipichiugestionegite;
  * @author aureli.giulia
  */
 public class Classe {
-    private String anno;
+    private int anno;
     private String sezione;
     private String indirizzo;
 
@@ -19,7 +19,7 @@ public class Classe {
      * @param sezione sezione della classe
      * @param indirizzo indirizzo della classe
      */
-    public Classe(String anno, String sezione, String indirizzo) {
+    public Classe(int anno, String sezione, String indirizzo) {
         this.anno = anno;
         this.sezione = sezione;
         this.indirizzo = indirizzo;
@@ -29,7 +29,7 @@ public class Classe {
      * Metodo get
      * @return anno
      */
-    public String getAnno() {
+    public int getAnno() {
         return anno;
     }
 
