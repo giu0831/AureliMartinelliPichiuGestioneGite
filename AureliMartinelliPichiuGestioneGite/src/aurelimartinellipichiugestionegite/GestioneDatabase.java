@@ -102,7 +102,7 @@ public class GestioneDatabase {
     }
 
     /**
-     * Metodo per creare la tabella delle partecipazioni
+     * Metodo per creare la tabella delle partecipazioni, lega gita a studente
      * @return true se e' stata creata la tabella, false se non e' riuscito a creare la tabella
      */
     public boolean creaTabellaPartecipazioni() {
@@ -124,6 +124,114 @@ public class GestioneDatabase {
            
         } catch (SQLException e) {  
             System.out.println("Errore in creaTabellaPartecipazioni: " + e.getMessage());  
+            return false;
+        }
+    }
+    
+    /**
+     * Inserisce una nuova classe nel database
+     * @param anno Es: 3, 4, 5
+     * @param sezione Es: "A", "B"
+     * @param indirizzo Es: "Informatica", "Linguistico"
+     * @return true se l'inserimento è riuscito
+     */
+    public boolean inserisciClasse(int anno, String sezione, String indirizzo) {
+        String sql = "INSERT INTO classi (cla_anno, cla_sezione, cla_indirizzo) VALUES (?, ?, ?)";
+
+        try (Connection conn = DriverManager.getConnection(url);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setInt(1, anno);
+            pstmt.setString(2, sezione);
+            pstmt.setString(3, indirizzo);
+
+            pstmt.executeUpdate();
+            System.out.println("Classe inserita con successo!");
+            return true;
+
+        } catch (SQLException e) {
+            System.out.println("Errore inserimento classe: " + e.getMessage());
+            return false;
+        }
+    }
+
+    /**
+     * Inserisce una nuova gita
+     * @param destinazione Es: "Roma", "Parigi"
+     * @param durata Es: "3 giorni", "1 giorno"
+     * @param prezzo Prezzo in euro
+     * @return true se l'inserimento è riuscito
+     */
+    public boolean inserisciGita(String destinazione, String durata, int prezzo) {
+        String sql = "INSERT INTO gite (git_destinazione, git_durata, git_prezzo) VALUES (?, ?, ?)";
+
+        try (Connection conn = DriverManager.getConnection(url);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, destinazione);
+            pstmt.setString(2, durata);
+            pstmt.setInt(3, prezzo);
+
+            pstmt.executeUpdate();
+            System.out.println("Gita inserita con successo!");
+            return true;
+
+        } catch (SQLException e) {
+            System.out.println("Errore inserimento gita: " + e.getMessage());
+            return false;
+        }
+    }
+
+    /**
+     * Inserisce uno studente associandolo a una classe esistente
+     * @param nome Nome studente
+     * @param cognome Cognome studente
+     * @param idClasse L'ID (cla_id) della classe a cui appartiene
+     * @return true se l'inserimento è riuscito
+     */
+    public boolean inserisciStudente(String nome, String cognome, int idClasse) {
+        String sql = "INSERT INTO studenti (stu_nome, stu_cognome, stu_cla_id) VALUES (?, ?, ?)";
+
+        try (Connection conn = DriverManager.getConnection(url);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, nome);
+            pstmt.setString(2, cognome);
+            pstmt.setInt(3, idClasse);
+
+            pstmt.executeUpdate();
+            System.out.println("Studente inserito con successo!");
+            return true;
+
+        } catch (SQLException e) {
+            System.out.println("Errore inserimento studente: " + e.getMessage());
+            return false;
+        }
+    }
+
+    /**
+     * Registra la partecipazione di uno studente a una gita
+     * @param idStudente L'ID (stu_id) dello studente
+     * @param idGita L'ID (git_id) della gita
+     * @return true se l'inserimento è riuscito
+     */
+    public boolean inserisciPartecipazione(int idStudente, int idGita) {
+        String sql = "INSERT INTO partecipazioni (par_stu_id, par_git_id) VALUES (?, ?)";
+
+        try (Connection conn = DriverManager.getConnection(url);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setInt(1, idStudente);
+            pstmt.setInt(2, idGita);
+
+            pstmt.executeUpdate();
+            System.out.println("Partecipazione registrata con successo!");
+            return true;
+
+        } catch (SQLException e) {
+            System.out.println("Errore inserimento partecipazione: " + e.getMessage());
+            // Nota: fallirà se lo studente o la gita non esistono (grazie ai Foreign Keys)
+            // o se lo studente è già iscritto a quella gita (grazie alla Primary Key composta)
             return false;
         }
     }
