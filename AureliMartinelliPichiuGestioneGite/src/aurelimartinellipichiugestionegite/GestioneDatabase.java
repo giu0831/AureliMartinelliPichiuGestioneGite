@@ -8,7 +8,7 @@ import java.sql.*;
 import java.util.ArrayList;
 
 /**
- *
+ * COME LO METTO L'ID?
  * @author aureli.giulia
  */
 public class GestioneDatabase {
