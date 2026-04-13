@@ -12,12 +12,21 @@ public class Gita {
     private String destinazione;
     private int durata;
     private int prezzo;
+    private int id;
 
     public Gita(String destinazione, int durata, int prezzo) {
         this.destinazione = destinazione;
         this.durata = durata;
         this.prezzo = prezzo;
     }
+
+    public Gita(String destinazione, int durata, int prezzo, int id) {
+        this.destinazione = destinazione;
+        this.durata = durata;
+        this.prezzo = prezzo;
+        this.id = id;
+    }
+    
     
     public String getDestinazione() {
         return destinazione;

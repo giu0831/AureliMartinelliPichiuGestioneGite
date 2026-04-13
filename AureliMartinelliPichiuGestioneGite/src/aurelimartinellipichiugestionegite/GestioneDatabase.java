@@ -254,6 +254,7 @@ public class GestioneDatabase {
                     rs.getInt("cla_anno"),
                     rs.getString("cla_sezione"),
                     rs.getString("cla_indirizzo")
+                        
                 );
                 lista.add(c);
             }

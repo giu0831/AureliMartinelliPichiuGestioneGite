@@ -13,7 +13,6 @@ public class Studente {
     private String nome;
     private String cognome;
     private Classe classe;
-    //private int IDClasse;
 
     public Studente(int matricola, String nome, String cognome, Classe classe) {
         this.matricola = matricola;
@@ -21,6 +20,14 @@ public class Studente {
         this.cognome = cognome;
         this.classe = classe;
     }
+
+    public Studente(String nome, String cognome, Classe classe) {
+        this.nome = nome;
+        this.cognome = cognome;
+        this.classe = classe;
+        matricola = -1;
+    }
+    
 
     public int getMatricola() {
         return matricola;
@@ -38,6 +45,15 @@ public class Studente {
         return classe;
     }
 
+    /**
+     * Metodo set
+     * @param matricola 
+     */
+    public void setMatricola(int matricola) {
+        this.matricola = matricola;
+    }
+
+    
  
     
 }

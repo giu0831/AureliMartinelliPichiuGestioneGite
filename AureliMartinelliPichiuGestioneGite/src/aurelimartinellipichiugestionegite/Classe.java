@@ -12,6 +12,7 @@ public class Classe {
     private int anno;
     private String sezione;
     private String indirizzo;
+    private int id;
 
     /**
      * Metodo costruttore
@@ -23,7 +24,16 @@ public class Classe {
         this.anno = anno;
         this.sezione = sezione;
         this.indirizzo = indirizzo;
+        id = -1;
     }
+
+    public Classe(int anno, String sezione, String indirizzo, int id) {
+        this.anno = anno;
+        this.sezione = sezione;
+        this.indirizzo = indirizzo;
+        this.id = id;
+    }
+    
 
     /**
      * Metodo get
@@ -48,6 +58,15 @@ public class Classe {
     public String getIndirizzo() {
         return indirizzo;
     }
+
+    /**
+     * Metodo set
+     * @param id id della classe
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
+    
 
     @Override
     public String toString() {
