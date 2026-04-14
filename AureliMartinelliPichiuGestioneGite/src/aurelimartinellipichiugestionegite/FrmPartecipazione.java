@@ -29,12 +29,8 @@ public class FrmPartecipazione extends javax.swing.JFrame {
 
         pnlTitoloGestioneMagazzino = new javax.swing.JPanel();
         lblGestioneMagazzino = new javax.swing.JLabel();
-        btnNuovoProdotto = new javax.swing.JButton();
         pnlGestioneMagazzino = new javax.swing.JPanel();
-        btnVendi = new javax.swing.JButton();
-        btnElimina = new javax.swing.JButton();
         btnRifornisci = new javax.swing.JButton();
-        btnStatistiche = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
         tableStudenti1 = new javax.swing.JTable();
         cmbStudente = new javax.swing.JComboBox<>();
@@ -50,12 +46,6 @@ public class FrmPartecipazione extends javax.swing.JFrame {
         lblGestioneMagazzino.setForeground(new java.awt.Color(255, 255, 255));
         lblGestioneMagazzino.setText("Gestione Gite");
 
-        btnNuovoProdotto.setBackground(new java.awt.Color(160, 160, 255));
-        btnNuovoProdotto.setFont(new java.awt.Font("Yu Gothic UI Semilight", 0, 14)); // NOI18N
-        btnNuovoProdotto.setForeground(new java.awt.Color(255, 255, 255));
-        btnNuovoProdotto.setText("+  BOTTONE");
-        btnNuovoProdotto.addActionListener(this::btnNuovoProdottoActionPerformed);
-
         javax.swing.GroupLayout pnlTitoloGestioneMagazzinoLayout = new javax.swing.GroupLayout(pnlTitoloGestioneMagazzino);
         pnlTitoloGestioneMagazzino.setLayout(pnlTitoloGestioneMagazzinoLayout);
         pnlTitoloGestioneMagazzinoLayout.setHorizontalGroup(
@@ -63,37 +53,21 @@ public class FrmPartecipazione extends javax.swing.JFrame {
             .addGroup(pnlTitoloGestioneMagazzinoLayout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(lblGestioneMagazzino)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 190, Short.MAX_VALUE)
-                .addComponent(btnNuovoProdotto, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21))
+                .addContainerGap(339, Short.MAX_VALUE))
         );
         pnlTitoloGestioneMagazzinoLayout.setVerticalGroup(
             pnlTitoloGestioneMagazzinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlTitoloGestioneMagazzinoLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addGroup(pnlTitoloGestioneMagazzinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnNuovoProdotto, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblGestioneMagazzino))
+                .addComponent(lblGestioneMagazzino)
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
         pnlGestioneMagazzino.setBackground(new java.awt.Color(255, 255, 255));
 
-        btnVendi.setFont(new java.awt.Font("Yu Gothic UI Semilight", 0, 14)); // NOI18N
-        btnVendi.setText("BOTTONE");
-        btnVendi.addActionListener(this::btnVendiActionPerformed);
-
-        btnElimina.setFont(new java.awt.Font("Yu Gothic UI Semilight", 0, 14)); // NOI18N
-        btnElimina.setText("BOT");
-        btnElimina.addActionListener(this::btnEliminaActionPerformed);
-
         btnRifornisci.setFont(new java.awt.Font("Yu Gothic UI Semilight", 0, 14)); // NOI18N
-        btnRifornisci.setText("BOTTONE");
+        btnRifornisci.setText("Aggiungi");
         btnRifornisci.addActionListener(this::btnRifornisciActionPerformed);
-
-        btnStatistiche.setFont(new java.awt.Font("Yu Gothic UI Semilight", 0, 14)); // NOI18N
-        btnStatistiche.setText("BOT");
-        btnStatistiche.addActionListener(this::btnStatisticheActionPerformed);
 
         tableStudenti1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -129,7 +103,7 @@ public class FrmPartecipazione extends javax.swing.JFrame {
 
         cmbGita.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        btnLega.setText("Lega");
+        btnLega.setText("Iscrivi");
 
         javax.swing.GroupLayout pnlGestioneMagazzinoLayout = new javax.swing.GroupLayout(pnlGestioneMagazzino);
         pnlGestioneMagazzino.setLayout(pnlGestioneMagazzinoLayout);
@@ -137,46 +111,33 @@ public class FrmPartecipazione extends javax.swing.JFrame {
             pnlGestioneMagazzinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlGestioneMagazzinoLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addGroup(pnlGestioneMagazzinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(pnlGestioneMagazzinoLayout.createSequentialGroup()
-                        .addComponent(cmbStudente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cmbGita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnLega, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnElimina2))
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addGroup(pnlGestioneMagazzinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnRifornisci)
-                    .addComponent(btnVendi, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnElimina, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnStatistiche, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(pnlGestioneMagazzinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnElimina2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnRifornisci, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnLega, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cmbStudente, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cmbGita, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         pnlGestioneMagazzinoLayout.setVerticalGroup(
             pnlGestioneMagazzinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlGestioneMagazzinoLayout.createSequentialGroup()
-                .addContainerGap(48, Short.MAX_VALUE)
-                .addComponent(btnRifornisci)
-                .addGap(39, 39, 39)
-                .addComponent(btnVendi)
-                .addGap(39, 39, 39)
-                .addComponent(btnElimina)
-                .addGap(39, 39, 39)
-                .addComponent(btnStatistiche)
-                .addGap(51, 51, 51))
             .addGroup(pnlGestioneMagazzinoLayout.createSequentialGroup()
                 .addGap(24, 24, 24)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addGroup(pnlGestioneMagazzinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cmbStudente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnElimina2)
-                    .addComponent(cmbGita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnLega))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(pnlGestioneMagazzinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(pnlGestioneMagazzinoLayout.createSequentialGroup()
+                        .addComponent(btnRifornisci)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnElimina2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnLega, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cmbGita, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cmbStudente, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -191,31 +152,15 @@ public class FrmPartecipazione extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(pnlTitoloGestioneMagazzino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(pnlGestioneMagazzino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(pnlGestioneMagazzino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnNuovoProdottoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuovoProdottoActionPerformed
-    }//GEN-LAST:event_btnNuovoProdottoActionPerformed
-
-    private void btnVendiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVendiActionPerformed
-
-    }//GEN-LAST:event_btnVendiActionPerformed
-
-    private void btnEliminaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminaActionPerformed
-
-    }//GEN-LAST:event_btnEliminaActionPerformed
-
     private void btnRifornisciActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRifornisciActionPerformed
 
     }//GEN-LAST:event_btnRifornisciActionPerformed
-
-    private void btnStatisticheActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStatisticheActionPerformed
-
-    }//GEN-LAST:event_btnStatisticheActionPerformed
 
     /**
      * @param args the command line arguments
@@ -243,13 +188,9 @@ public class FrmPartecipazione extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnElimina;
     private javax.swing.JButton btnElimina2;
     private javax.swing.JButton btnLega;
-    private javax.swing.JButton btnNuovoProdotto;
     private javax.swing.JButton btnRifornisci;
-    private javax.swing.JButton btnStatistiche;
-    private javax.swing.JButton btnVendi;
     private javax.swing.JComboBox<String> cmbGita;
     private javax.swing.JComboBox<String> cmbStudente;
     private javax.swing.JScrollPane jScrollPane5;
