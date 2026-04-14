@@ -253,8 +253,8 @@ public class GestioneDatabase {
                 Classe c = new Classe(
                     rs.getInt("cla_anno"),
                     rs.getString("cla_sezione"),
-                    rs.getString("cla_indirizzo")
-                        
+                    rs.getString("cla_indirizzo"),
+                    rs.getInt("cla_id")
                 );
                 lista.add(c);
             }
@@ -284,7 +284,8 @@ public class GestioneDatabase {
                 Classe classeDelloStudente = new Classe(
                     rs.getInt("cla_anno"), 
                     rs.getString("cla_sezione"), 
-                    rs.getString("cla_indirizzo")
+                    rs.getString("cla_indirizzo"),
+                    rs.getInt("cla_id")
                 );
                 
                 Studente s = new Studente(
@@ -317,7 +318,8 @@ public class GestioneDatabase {
                 Gita g = new Gita(
                     rs.getString("git_destinazione"),
                     rs.getInt("git_durata"), 
-                    rs.getInt("git_prezzo")
+                    rs.getInt("git_prezzo"),
+                    rs.getInt("git_id")
                 );
                 lista.add(g);
             }
@@ -328,7 +330,7 @@ public class GestioneDatabase {
     }
 
     /**
-     * Restituisce la lista degli studenti iscritti a una specifica gita
+     * Restituisce la lista degli studenti iscritti a una specifica gita DA RIGUARDARE
      */
     public ArrayList<Studente> getPartecipantiGita(int idGita) {
         ArrayList<Studente> lista = new ArrayList<>();
@@ -350,7 +352,8 @@ public class GestioneDatabase {
                 Classe classeDelloStudente = new Classe(
                     rs.getInt("cla_anno"), 
                     rs.getString("cla_sezione"), 
-                    rs.getString("cla_indirizzo")
+                    rs.getString("cla_indirizzo"),
+                    rs.getInt("cla_id")
                 );
                 
                 Studente s = new Studente(
