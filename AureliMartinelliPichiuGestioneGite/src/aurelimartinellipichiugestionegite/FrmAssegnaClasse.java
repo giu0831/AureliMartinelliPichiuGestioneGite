@@ -31,8 +31,8 @@ public class FrmAssegnaClasse extends javax.swing.JFrame {
         pnlBase = new javax.swing.JPanel();
         pnlTitolo = new javax.swing.JPanel();
         lblAssegnaClasse = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        JScrollPane = new javax.swing.JScrollPane();
+        tblAssegnaClasse = new javax.swing.JTable();
         cmbScegliClasse = new javax.swing.JComboBox<>();
         btnConferma = new javax.swing.JButton();
 
@@ -62,7 +62,7 @@ public class FrmAssegnaClasse extends javax.swing.JFrame {
 
         pnlTitolo.setBackground(new java.awt.Color(153, 204, 255));
 
-        lblAssegnaClasse.setFont(new java.awt.Font("Segoe UI Light", 1, 18)); // NOI18N
+        lblAssegnaClasse.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblAssegnaClasse.setText("Assegna Classe");
 
         javax.swing.GroupLayout pnlTitoloLayout = new javax.swing.GroupLayout(pnlTitolo);
@@ -70,19 +70,19 @@ public class FrmAssegnaClasse extends javax.swing.JFrame {
         pnlTitoloLayout.setHorizontalGroup(
             pnlTitoloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlTitoloLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(14, 14, 14)
                 .addComponent(lblAssegnaClasse)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlTitoloLayout.setVerticalGroup(
             pnlTitoloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlTitoloLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addGap(23, 23, 23)
                 .addComponent(lblAssegnaClasse)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblAssegnaClasse.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -93,7 +93,7 @@ public class FrmAssegnaClasse extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        JScrollPane.setViewportView(tblAssegnaClasse);
 
         cmbScegliClasse.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -107,7 +107,7 @@ public class FrmAssegnaClasse extends javax.swing.JFrame {
             .addComponent(pnlTitolo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBaseLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(JScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(cmbScegliClasse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(15, Short.MAX_VALUE))
@@ -123,7 +123,7 @@ public class FrmAssegnaClasse extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(pnlBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlBaseLayout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(JScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(34, Short.MAX_VALUE))
                     .addGroup(pnlBaseLayout.createSequentialGroup()
                         .addComponent(cmbScegliClasse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -141,7 +141,7 @@ public class FrmAssegnaClasse extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(pnlBase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 21, Short.MAX_VALUE))
+                .addGap(0, 15, Short.MAX_VALUE))
         );
 
         pack();
@@ -183,14 +183,14 @@ public class FrmAssegnaClasse extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JScrollPane JScrollPane;
     private javax.swing.JButton btnConferma;
     private javax.swing.JComboBox<String> cmbScegliClasse;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblAssegnaClasse;
     private javax.swing.JPanel pnlBase;
     private javax.swing.JPanel pnlTitolo;
+    private javax.swing.JTable tblAssegnaClasse;
     // End of variables declaration//GEN-END:variables
 }
