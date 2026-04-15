@@ -9,12 +9,12 @@ package aurelimartinellipichiugestionegite;
  *
  * @author aureli.giulia
  */
-public class FrmPartecipazione extends javax.swing.JFrame {
+public class FrmGestioneGite extends javax.swing.JFrame {
 
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmPartecipazione.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmGestioneGite.class.getName());
 
     /** Creates new form FrmPartecipazione */
-    public FrmPartecipazione() {
+    public FrmGestioneGite() {
         initComponents();
     }
 
@@ -33,10 +33,9 @@ public class FrmPartecipazione extends javax.swing.JFrame {
         btnRifornisci = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
         tableStudenti1 = new javax.swing.JTable();
-        cmbStudente = new javax.swing.JComboBox<>();
-        btnElimina2 = new javax.swing.JButton();
-        cmbGita = new javax.swing.JComboBox<>();
-        btnLega = new javax.swing.JButton();
+        cmbTabelle = new javax.swing.JComboBox<>();
+        btnElimina = new javax.swing.JButton();
+        btnIscrivi = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -53,7 +52,7 @@ public class FrmPartecipazione extends javax.swing.JFrame {
             .addGroup(pnlTitoloGestioneMagazzinoLayout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(lblGestioneMagazzino)
-                .addContainerGap(339, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlTitoloGestioneMagazzinoLayout.setVerticalGroup(
             pnlTitoloGestioneMagazzinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -97,13 +96,13 @@ public class FrmPartecipazione extends javax.swing.JFrame {
         });
         jScrollPane5.setViewportView(tableStudenti1);
 
-        cmbStudente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbTabelle.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Studenti", "Classi", "Gite" }));
 
-        btnElimina2.setText("Elimina");
+        btnElimina.setFont(new java.awt.Font("Yu Gothic UI Semilight", 0, 14)); // NOI18N
+        btnElimina.setText("Elimina");
 
-        cmbGita.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        btnLega.setText("Iscrivi");
+        btnIscrivi.setFont(new java.awt.Font("Yu Gothic UI Semilight", 0, 14)); // NOI18N
+        btnIscrivi.setText("Iscrivi");
 
         javax.swing.GroupLayout pnlGestioneMagazzinoLayout = new javax.swing.GroupLayout(pnlGestioneMagazzino);
         pnlGestioneMagazzino.setLayout(pnlGestioneMagazzinoLayout);
@@ -111,33 +110,36 @@ public class FrmPartecipazione extends javax.swing.JFrame {
             pnlGestioneMagazzinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlGestioneMagazzinoLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(pnlGestioneMagazzinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnElimina2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnRifornisci, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnLega, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cmbStudente, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cmbGita, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addGroup(pnlGestioneMagazzinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlGestioneMagazzinoLayout.createSequentialGroup()
+                        .addComponent(cmbTabelle, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(pnlGestioneMagazzinoLayout.createSequentialGroup()
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(pnlGestioneMagazzinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnElimina, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnIscrivi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(pnlGestioneMagazzinoLayout.createSequentialGroup()
+                                .addComponent(btnRifornisci, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(14, 14, 14))))
         );
         pnlGestioneMagazzinoLayout.setVerticalGroup(
             pnlGestioneMagazzinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlGestioneMagazzinoLayout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addGap(10, 10, 10)
+                .addComponent(cmbTabelle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
                 .addGroup(pnlGestioneMagazzinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(pnlGestioneMagazzinoLayout.createSequentialGroup()
-                        .addComponent(btnRifornisci)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnElimina2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnRifornisci, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(68, 68, 68)
+                        .addComponent(btnIscrivi, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnLega, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cmbGita, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cmbStudente, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(24, Short.MAX_VALUE))
+                        .addComponent(btnElimina, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -184,15 +186,14 @@ public class FrmPartecipazione extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new FrmPartecipazione().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new FrmGestioneGite().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnElimina2;
-    private javax.swing.JButton btnLega;
+    private javax.swing.JButton btnElimina;
+    private javax.swing.JButton btnIscrivi;
     private javax.swing.JButton btnRifornisci;
-    private javax.swing.JComboBox<String> cmbGita;
-    private javax.swing.JComboBox<String> cmbStudente;
+    private javax.swing.JComboBox<String> cmbTabelle;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JLabel lblGestioneMagazzino;
     private javax.swing.JPanel pnlGestioneMagazzino;
