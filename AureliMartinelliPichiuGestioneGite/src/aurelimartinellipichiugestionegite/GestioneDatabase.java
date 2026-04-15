@@ -8,18 +8,19 @@ import java.sql.*;
 import java.util.ArrayList;
 
 /**
- * COME LO METTO L'ID?
  * @author aureli.giulia
  */
 public class GestioneDatabase {
    
-    private final String url = "jdbc:sqlite:gestione_gite.db?foreign_keys=on";
+    // Resa statica per poter essere usata dai metodi statici
+    private static final String url = "jdbc:sqlite:gestione_gite.db?foreign_keys=on";
 
     /**
-     * Metodo costruttore
+     * Metodo di inizializzazione (sostituisce il costruttore).
+     * Chiamalo all'avvio dell'applicazione con GestioneDatabase.inizializza();
      */
-    public GestioneDatabase() {
-        //creazione delle tabelle
+    public static void inizializza() {
+        // creazione delle tabelle
         creaTabellaClassi();
         creaTabellaGite();
         creaTabellaStudenti();
@@ -30,12 +31,12 @@ public class GestioneDatabase {
      * Metodo per creare la tabella delle classi
      * @return true se e' stata creata la tabella, false se non e' riuscito a creare la tabella
      */
-    public boolean creaTabellaClassi() {
+    public static boolean creaTabellaClassi() {
         String sql = "CREATE TABLE IF NOT EXISTS classi (\n"  
            + " cla_id INTEGER PRIMARY KEY AUTOINCREMENT,\n"  
-           + " cla_anno INTEGER NOT NULL,\n"           // Es: 3, 4
-           + " cla_sezione TEXT NOT NULL,\n"           // Es: "A", "B"
-           + " cla_indirizzo TEXT NOT NULL,\n"         // Es: "Informatica", "Linguistico"
+           + " cla_anno INTEGER NOT NULL,\n"            // Es: 3, 4
+           + " cla_sezione TEXT NOT NULL,\n"            // Es: "A", "B"
+           + " cla_indirizzo TEXT NOT NULL,\n"          // Es: "Informatica", "Linguistico"
            + " UNIQUE(cla_anno, cla_sezione, cla_indirizzo)\n" // Evita duplicati come due "3 A Informatica"
            + ");";
         try (Connection conn = DriverManager.getConnection(url);  
@@ -55,11 +56,11 @@ public class GestioneDatabase {
      * Metodo per creare la tabella delle gite
      * @return true se e' stata creata la tabella, false se non e' riuscito a creare la tabella
      */
-    public boolean creaTabellaGite() {
+    public static boolean creaTabellaGite() {
         String sql = "CREATE TABLE IF NOT EXISTS gite (\n"  
            + " git_id INTEGER PRIMARY KEY AUTOINCREMENT,\n"  
            + " git_destinazione TEXT NOT NULL,\n"  
-           + " git_durata TEXT NOT NULL,\n"           
+           + " git_durata TEXT NOT NULL,\n"            
            + " git_prezzo INTEGER NOT NULL\n"       
            + ");";
 
@@ -80,7 +81,7 @@ public class GestioneDatabase {
      * Metodo per creare la tabella degli studenti
      * @return true se e' stata creata la tabella, false se non e' riuscito a creare la tabella
      */
-    public boolean creaTabellaStudenti() {
+    public static boolean creaTabellaStudenti() {
         String sql = "CREATE TABLE IF NOT EXISTS studenti (\n"  
            + " stu_id INTEGER PRIMARY KEY AUTOINCREMENT,\n"  
            + " stu_nome TEXT NOT NULL,\n"  
@@ -106,7 +107,7 @@ public class GestioneDatabase {
      * Metodo per creare la tabella delle partecipazioni, lega gita a studente
      * @return true se e' stata creata la tabella, false se non e' riuscito a creare la tabella
      */
-    public boolean creaTabellaPartecipazioni() {
+    public static boolean creaTabellaPartecipazioni() {
         // "tabella ponte" o di congiunzione, perché serve solo a collegare gli studenti alle gite in una relazione "molti-a-molti"
         String sql = "CREATE TABLE IF NOT EXISTS partecipazioni (\n"  
            + " par_stu_id INTEGER NOT NULL,\n"  
@@ -128,7 +129,7 @@ public class GestioneDatabase {
             return false;
         }
     }
-    
+   
     /**
      * Inserisce una nuova classe nel database
      * @param anno Es: 3, 4, 5
@@ -136,7 +137,7 @@ public class GestioneDatabase {
      * @param indirizzo Es: "Informatica", "Linguistico"
      * @return true se l'inserimento è riuscito
      */
-    public boolean inserisciClasse(int anno, String sezione, String indirizzo) {
+    public static boolean inserisciClasse(int anno, String sezione, String indirizzo) {
         String sql = "INSERT INTO classi (cla_anno, cla_sezione, cla_indirizzo) VALUES (?, ?, ?)";
 
         try (Connection conn = DriverManager.getConnection(url);
@@ -163,7 +164,7 @@ public class GestioneDatabase {
      * @param prezzo Prezzo in euro
      * @return true se l'inserimento è riuscito
      */
-    public boolean inserisciGita(String destinazione, String durata, int prezzo) {
+    public static boolean inserisciGita(String destinazione, String durata, int prezzo) {
         String sql = "INSERT INTO gite (git_destinazione, git_durata, git_prezzo) VALUES (?, ?, ?)";
 
         try (Connection conn = DriverManager.getConnection(url);
@@ -190,7 +191,7 @@ public class GestioneDatabase {
      * @param idClasse L'ID (cla_id) della classe a cui appartiene
      * @return true se l'inserimento è riuscito
      */
-    public boolean inserisciStudente(String nome, String cognome, int idClasse) {
+    public static boolean inserisciStudente(String nome, String cognome, int idClasse) {
         String sql = "INSERT INTO studenti (stu_nome, stu_cognome, stu_cla_id) VALUES (?, ?, ?)";
 
         try (Connection conn = DriverManager.getConnection(url);
@@ -216,7 +217,7 @@ public class GestioneDatabase {
      * @param idGita L'ID (git_id) della gita
      * @return true se l'inserimento è riuscito
      */
-    public boolean inserisciPartecipazione(int idStudente, int idGita) {
+    public static boolean inserisciPartecipazione(int idStudente, int idGita) {
         String sql = "INSERT INTO partecipazioni (par_stu_id, par_git_id) VALUES (?, ?)";
 
         try (Connection conn = DriverManager.getConnection(url);
@@ -236,11 +237,11 @@ public class GestioneDatabase {
             return false;
         }
     }
-    
+   
     /**
      * Restituisce la lista di tutte le classi
      */
-    public ArrayList<Classe> getListaClassi() {
+    public static ArrayList<Classe> getListaClassi() {
         ArrayList<Classe> lista = new ArrayList<>();
         String sql = "SELECT * FROM classi";
 
@@ -251,10 +252,11 @@ public class GestioneDatabase {
             while (rs.next()) {
                 // Passo direttamente rs.getInt() perché ora 'anno' è un int
                 Classe c = new Classe(
+                    rs.getInt("cla_id"),
                     rs.getInt("cla_anno"),
                     rs.getString("cla_sezione"),
-                    rs.getString("cla_indirizzo"),
-                    rs.getInt("cla_id")
+                    rs.getString("cla_indirizzo")
+                   
                 );
                 lista.add(c);
             }
@@ -268,10 +270,10 @@ public class GestioneDatabase {
      * Restituisce la lista di tutti gli studenti, creando per ognuno 
      * il rispettivo oggetto Classe al suo interno
      */
-    public ArrayList<Studente> getListaStudenti() {
+    public static ArrayList<Studente> getListaStudenti() {
         ArrayList<Studente> lista = new ArrayList<>();
         String sql = "SELECT s.stu_id, s.stu_nome, s.stu_cognome, " +
-                     "c.cla_anno, c.cla_sezione, c.cla_indirizzo " +
+                     "c.cla_id, c.cla_anno, c.cla_sezione, c.cla_indirizzo " + // Aggiunto c.cla_id alla query per la classe
                      "FROM studenti s " +
                      "JOIN classi c ON s.stu_cla_id = c.cla_id";
 
@@ -280,14 +282,15 @@ public class GestioneDatabase {
              ResultSet rs = stmt.executeQuery(sql)) {
 
             while (rs.next()) {
-                // Creo la Classe passando l'int per l'anno
+                // Creo la Classe passando l'int per l'anno e assicurandomi di passare l'id
                 Classe classeDelloStudente = new Classe(
+                    rs.getInt("cla_id"),
                     rs.getInt("cla_anno"), 
                     rs.getString("cla_sezione"), 
-                    rs.getString("cla_indirizzo"),
-                    rs.getInt("cla_id")
+                    rs.getString("cla_indirizzo")
+                   
                 );
-                
+               
                 Studente s = new Studente(
                     rs.getInt("stu_id"),
                     rs.getString("stu_nome"),
@@ -301,11 +304,11 @@ public class GestioneDatabase {
         }
         return lista;
     }
-    
+   
     /**
      * Restituisce la lista di tutte le gite disponibili
      */
-    public ArrayList<Gita> getListaGite() {
+    public static ArrayList<Gita> getListaGite() {
         ArrayList<Gita> lista = new ArrayList<>();
         String sql = "SELECT * FROM gite";
 
@@ -316,10 +319,11 @@ public class GestioneDatabase {
             while (rs.next()) {
                 // Crea l'oggetto Gita usando i dati dal database
                 Gita g = new Gita(
+                    rs.getInt("git_id"),
                     rs.getString("git_destinazione"),
                     rs.getInt("git_durata"), 
-                    rs.getInt("git_prezzo"),
-                    rs.getInt("git_id")
+                    rs.getInt("git_prezzo")
+                   
                 );
                 lista.add(g);
             }
@@ -330,12 +334,12 @@ public class GestioneDatabase {
     }
 
     /**
-     * Restituisce la lista degli studenti iscritti a una specifica gita DA RIGUARDARE
+     * Restituisce la lista degli studenti iscritti a una specifica gita
      */
-    public ArrayList<Studente> getPartecipantiGita(int idGita) {
+    public static ArrayList<Studente> getPartecipantiGita(int idGita) {
         ArrayList<Studente> lista = new ArrayList<>();
         String sql = "SELECT s.stu_id, s.stu_nome, s.stu_cognome, " +
-                     "c.cla_anno, c.cla_sezione, c.cla_indirizzo " +
+                     "c.cla_id, c.cla_anno, c.cla_sezione, c.cla_indirizzo " + // Aggiunto c.cla_id per sicurezza
                      "FROM partecipazioni p " +
                      "JOIN studenti s ON p.par_stu_id = s.stu_id " +
                      "JOIN classi c ON s.stu_cla_id = c.cla_id " +
@@ -350,12 +354,12 @@ public class GestioneDatabase {
             while (rs.next()) {
                 // Creo la Classe passando l'int per l'anno
                 Classe classeDelloStudente = new Classe(
+                    rs.getInt("cla_id"),
                     rs.getInt("cla_anno"), 
                     rs.getString("cla_sezione"), 
-                    rs.getString("cla_indirizzo"),
-                    rs.getInt("cla_id")
+                    rs.getString("cla_indirizzo")
                 );
-                
+               
                 Studente s = new Studente(
                     rs.getInt("stu_id"),
                     rs.getString("stu_nome"),

@@ -5,6 +5,8 @@
 
 package aurelimartinellipichiugestionegite;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author aureli.giulia
@@ -16,6 +18,8 @@ public class FrmGestioneGite extends javax.swing.JFrame {
     /** Creates new form FrmPartecipazione */
     public FrmGestioneGite() {
         initComponents();
+        srpClassi.setVisible(false);
+        srpGite.setVisible(false);
     }
 
     /** This method is called from within the constructor to
@@ -29,15 +33,22 @@ public class FrmGestioneGite extends javax.swing.JFrame {
 
         pnlTitoloGestioneMagazzino = new javax.swing.JPanel();
         lblGestioneMagazzino = new javax.swing.JLabel();
-        pnlGestioneMagazzino = new javax.swing.JPanel();
-        btnRifornisci = new javax.swing.JButton();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        tableStudenti1 = new javax.swing.JTable();
         cmbTabelle = new javax.swing.JComboBox<>();
-        btnElimina = new javax.swing.JButton();
+        srpStudenti = new javax.swing.JScrollPane();
+        tblStudenti = new javax.swing.JTable();
+        btnAggiungi = new javax.swing.JButton();
         btnIscrivi = new javax.swing.JButton();
+        btnElimina = new javax.swing.JButton();
+        srpClassi = new javax.swing.JScrollPane();
+        tblClassi = new javax.swing.JTable();
+        srpGite = new javax.swing.JScrollPane();
+        tblGite = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Gestione gite");
+        setMinimumSize(new java.awt.Dimension(620, 400));
+        setPreferredSize(new java.awt.Dimension(610, 400));
+        getContentPane().setLayout(null);
 
         pnlTitoloGestioneMagazzino.setBackground(new java.awt.Color(102, 102, 255));
 
@@ -52,38 +63,40 @@ public class FrmGestioneGite extends javax.swing.JFrame {
             .addGroup(pnlTitoloGestioneMagazzinoLayout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(lblGestioneMagazzino)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(435, Short.MAX_VALUE))
         );
         pnlTitoloGestioneMagazzinoLayout.setVerticalGroup(
             pnlTitoloGestioneMagazzinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlTitoloGestioneMagazzinoLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(lblGestioneMagazzino)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
-        pnlGestioneMagazzino.setBackground(new java.awt.Color(255, 255, 255));
+        getContentPane().add(pnlTitoloGestioneMagazzino);
+        pnlTitoloGestioneMagazzino.setBounds(0, 0, 603, 70);
 
-        btnRifornisci.setFont(new java.awt.Font("Yu Gothic UI Semilight", 0, 14)); // NOI18N
-        btnRifornisci.setText("Aggiungi");
-        btnRifornisci.addActionListener(this::btnRifornisciActionPerformed);
+        cmbTabelle.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Studenti", "Classi", "Gite" }));
+        cmbTabelle.addItemListener(this::cmbTabelleItemStateChanged);
+        getContentPane().add(cmbTabelle);
+        cmbTabelle.setBounds(20, 80, 180, 22);
 
-        tableStudenti1.setModel(new javax.swing.table.DefaultTableModel(
+        tblStudenti.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Studente", "Classe", "Gita"
+                "Matricola", "Nome", "Cognome", "Classe"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -94,75 +107,140 @@ public class FrmGestioneGite extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane5.setViewportView(tableStudenti1);
+        srpStudenti.setViewportView(tblStudenti);
 
-        cmbTabelle.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Studenti", "Classi", "Gite" }));
+        getContentPane().add(srpStudenti);
+        srpStudenti.setBounds(20, 110, 360, 241);
 
-        btnElimina.setFont(new java.awt.Font("Yu Gothic UI Semilight", 0, 14)); // NOI18N
-        btnElimina.setText("Elimina");
+        btnAggiungi.setFont(new java.awt.Font("Yu Gothic UI Semilight", 0, 14)); // NOI18N
+        btnAggiungi.setText("Aggiungi");
+        btnAggiungi.addActionListener(this::btnAggiungiActionPerformed);
+        getContentPane().add(btnAggiungi);
+        btnAggiungi.setBounds(400, 110, 185, 30);
 
         btnIscrivi.setFont(new java.awt.Font("Yu Gothic UI Semilight", 0, 14)); // NOI18N
         btnIscrivi.setText("Iscrivi");
+        getContentPane().add(btnIscrivi);
+        btnIscrivi.setBounds(400, 210, 185, 35);
 
-        javax.swing.GroupLayout pnlGestioneMagazzinoLayout = new javax.swing.GroupLayout(pnlGestioneMagazzino);
-        pnlGestioneMagazzino.setLayout(pnlGestioneMagazzinoLayout);
-        pnlGestioneMagazzinoLayout.setHorizontalGroup(
-            pnlGestioneMagazzinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlGestioneMagazzinoLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addGroup(pnlGestioneMagazzinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlGestioneMagazzinoLayout.createSequentialGroup()
-                        .addComponent(cmbTabelle, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(pnlGestioneMagazzinoLayout.createSequentialGroup()
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(pnlGestioneMagazzinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnElimina, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnIscrivi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(pnlGestioneMagazzinoLayout.createSequentialGroup()
-                                .addComponent(btnRifornisci, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addGap(14, 14, 14))))
-        );
-        pnlGestioneMagazzinoLayout.setVerticalGroup(
-            pnlGestioneMagazzinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlGestioneMagazzinoLayout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(cmbTabelle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addGroup(pnlGestioneMagazzinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(pnlGestioneMagazzinoLayout.createSequentialGroup()
-                        .addComponent(btnRifornisci, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(68, 68, 68)
-                        .addComponent(btnIscrivi, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnElimina, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(12, Short.MAX_VALUE))
-        );
+        btnElimina.setFont(new java.awt.Font("Yu Gothic UI Semilight", 0, 14)); // NOI18N
+        btnElimina.setText("Elimina");
+        btnElimina.addActionListener(this::btnEliminaActionPerformed);
+        getContentPane().add(btnElimina);
+        btnElimina.setBounds(400, 310, 185, 35);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlTitoloGestioneMagazzino, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(pnlGestioneMagazzino, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(pnlTitoloGestioneMagazzino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(pnlGestioneMagazzino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        tblClassi.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Id", "Anno", "Sezione", "Indirizzo"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        srpClassi.setViewportView(tblClassi);
+
+        getContentPane().add(srpClassi);
+        srpClassi.setBounds(20, 110, 360, 241);
+
+        tblGite.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Id", "Destinazione", "Durata", "Prezzo"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        srpGite.setViewportView(tblGite);
+
+        getContentPane().add(srpGite);
+        srpGite.setBounds(20, 110, 360, 241);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnRifornisciActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRifornisciActionPerformed
+    private void btnAggiungiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAggiungiActionPerformed
+        String oggettoSelezionato = cmbTabelle.getSelectedItem().toString();
+        if (oggettoSelezionato.equals("Studenti")) {
+            if(GestioneClassi.getListaClassi().size() == 0){
+                JOptionPane.showMessageDialog(this, "Devi creare una classe prima di creare uno studente", "Attenzione", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            // Apre il form per aggiungere uno studente
+            FrmStudente frmStudente = new FrmStudente();
+            frmStudente.setVisible(true);
+            
+        } else if (oggettoSelezionato.equals("Classi")) {
+            // Apre il form per aggiungere una classe
+            FrmClasse frmClasse = new FrmClasse();
+            frmClasse.setVisible(true);
+            
+        } else if (oggettoSelezionato.equals("Gite")) {
+            // Apre il form per aggiungere una gita
+            FrmGita frmGita = new FrmGita();
+            frmGita.setVisible(true);
+        }
+    }//GEN-LAST:event_btnAggiungiActionPerformed
 
-    }//GEN-LAST:event_btnRifornisciActionPerformed
+    private void cmbTabelleItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbTabelleItemStateChanged
+        String oggettoSelezionato = cmbTabelle.getSelectedItem().toString();
+        srpGite.setVisible(false);
+        srpClassi.setVisible(false);
+        srpStudenti.setVisible(false);
+        if (oggettoSelezionato.equals("Studenti")) {
+            srpStudenti.setVisible(true);
+        } else if (oggettoSelezionato.equals("Classi")) {
+           srpClassi.setVisible(true);
+        } else if (oggettoSelezionato.equals("Gite")) {
+           srpGite.setVisible(true);
+        }
+    }//GEN-LAST:event_cmbTabelleItemStateChanged
+
+    private void btnEliminaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminaActionPerformed
+        String oggettoSelezionato = cmbTabelle.getSelectedItem().toString();
+        if (oggettoSelezionato.equals("Studenti")) {
+            //codice eliminazione
+        } else if (oggettoSelezionato.equals("Classi")) {
+
+        } else if (oggettoSelezionato.equals("Gite")) {
+            
+        }
+    }//GEN-LAST:event_btnEliminaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -190,15 +268,18 @@ public class FrmGestioneGite extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAggiungi;
     private javax.swing.JButton btnElimina;
     private javax.swing.JButton btnIscrivi;
-    private javax.swing.JButton btnRifornisci;
     private javax.swing.JComboBox<String> cmbTabelle;
-    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JLabel lblGestioneMagazzino;
-    private javax.swing.JPanel pnlGestioneMagazzino;
     private javax.swing.JPanel pnlTitoloGestioneMagazzino;
-    private javax.swing.JTable tableStudenti1;
+    private javax.swing.JScrollPane srpClassi;
+    private javax.swing.JScrollPane srpGite;
+    private javax.swing.JScrollPane srpStudenti;
+    private javax.swing.JTable tblClassi;
+    private javax.swing.JTable tblGite;
+    private javax.swing.JTable tblStudenti;
     // End of variables declaration//GEN-END:variables
 
 }

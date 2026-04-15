@@ -4,6 +4,8 @@
  */
 package aurelimartinellipichiugestionegite;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author aureli.giulia
@@ -40,6 +42,7 @@ public class FrmStudente extends javax.swing.JFrame {
         cmbClasse = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Creazione studente");
 
         pnlCreazioneClasse.setBackground(new java.awt.Color(153, 204, 255));
 
@@ -75,13 +78,10 @@ public class FrmStudente extends javax.swing.JFrame {
         txtNome.setColumns(5);
 
         txtCognome.setColumns(5);
-        txtCognome.addActionListener(this::txtCognomeActionPerformed);
 
         btnCreaStudente.setFont(new java.awt.Font("Segoe UI Light", 1, 12)); // NOI18N
         btnCreaStudente.setText("Crea");
-
-        cmbClasse.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cmbClasse.addActionListener(this::cmbClasseActionPerformed);
+        btnCreaStudente.addActionListener(this::btnCreaStudenteActionPerformed);
 
         javax.swing.GroupLayout pnlMenuLayout = new javax.swing.GroupLayout(pnlMenu);
         pnlMenu.setLayout(pnlMenuLayout);
@@ -140,14 +140,23 @@ public class FrmStudente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtCognomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCognomeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCognomeActionPerformed
+    private void btnCreaStudenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreaStudenteActionPerformed
+        if(controlloTextBox()) JOptionPane.showMessageDialog(this, "Inserisci tutti i dati", "Errore", JOptionPane.ERROR_MESSAGE);
+        String nome = txtNome.getText(), cognome = txtCognome.getText();
+        Classe classe = (Classe)cmbClasse.getSelectedItem();
+        Studente s = new Studente(nome, cognome, classe);
+        GestioneDatabase.inserisciStudente(nome, cognome, classe.getId());
+        //assegnazione id studente
+        GestioneStudenti.aggiungiStudente(s);
+    }//GEN-LAST:event_btnCreaStudenteActionPerformed
 
-    private void cmbClasseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbClasseActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbClasseActionPerformed
-
+    /**
+     * Metodo per controllare se le textbox sono vuote
+     * @return true se sono vuote, false altrimenti
+     */
+    public boolean controlloTextBox(){
+        return txtNome.getText().equals("") || txtCognome.getText().equals("");
+    }
     /**
      * @param args the command line arguments
      */
@@ -175,7 +184,7 @@ public class FrmStudente extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCreaStudente;
-    private javax.swing.JComboBox<String> cmbClasse;
+    private javax.swing.JComboBox<Classe> cmbClasse;
     private javax.swing.JLabel lblClasse;
     private javax.swing.JLabel lblCognome;
     private javax.swing.JLabel lblCreazioneStudente;

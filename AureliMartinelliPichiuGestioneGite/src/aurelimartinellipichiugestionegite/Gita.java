@@ -20,13 +20,16 @@ public class Gita {
         this.prezzo = prezzo;
     }
 
-    public Gita(String destinazione, int durata, int prezzo, int id) {
+    public Gita(int id, String destinazione, int durata, int prezzo) {
         this.destinazione = destinazione;
         this.durata = durata;
         this.prezzo = prezzo;
         this.id = id;
     }
-    
+
+    public void setId(int id) {
+        this.id = id;
+    }
     
     public String getDestinazione() {
         return destinazione;
@@ -39,4 +42,10 @@ public class Gita {
     public int getPrezzo() {
         return prezzo;
     }
+
+    public int getId() {
+        return id;
+    }
+    
+    
 }

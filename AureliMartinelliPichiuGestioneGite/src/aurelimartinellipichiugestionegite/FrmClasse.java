@@ -39,7 +39,8 @@ public class FrmClasse extends javax.swing.JFrame {
         pnlCreazioneClasse = new javax.swing.JPanel();
         lblCreazioneClasse = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Creazione classi");
 
         lblAnno.setText("Anno");
 

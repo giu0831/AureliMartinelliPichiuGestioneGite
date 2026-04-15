@@ -27,7 +27,7 @@ public class Classe {
         id = -1;
     }
 
-    public Classe(int anno, String sezione, String indirizzo, int id) {
+    public Classe(int id, int anno, String sezione, String indirizzo) {
         this.anno = anno;
         this.sezione = sezione;
         this.indirizzo = indirizzo;
@@ -58,6 +58,12 @@ public class Classe {
     public String getIndirizzo() {
         return indirizzo;
     }
+
+    public int getId() {
+        return id;
+    }
+    
+    
 
     /**
      * Metodo set
