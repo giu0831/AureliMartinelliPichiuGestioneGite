@@ -5,6 +5,7 @@
 package aurelimartinellipichiugestionegite;
 
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -13,12 +14,14 @@ import javax.swing.JOptionPane;
 public class FrmStudente extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmStudente.class.getName());
-
+    private DefaultTableModel model;
     /**
      * Creates new form FrmStudente
      */
-    public FrmStudente() {
+    public FrmStudente(DefaultTableModel model) {
         initComponents();
+        this.model = model;
+        configuraComboBox();
     }
 
     /**
@@ -41,7 +44,7 @@ public class FrmStudente extends javax.swing.JFrame {
         btnCreaStudente = new javax.swing.JButton();
         cmbClasse = new javax.swing.JComboBox<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Creazione studente");
 
         pnlCreazioneClasse.setBackground(new java.awt.Color(153, 204, 255));
@@ -141,21 +144,40 @@ public class FrmStudente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCreaStudenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreaStudenteActionPerformed
-        if(controlloTextBox()) JOptionPane.showMessageDialog(this, "Inserisci tutti i dati", "Errore", JOptionPane.ERROR_MESSAGE);
+        if(controlloTextBox()){
+            JOptionPane.showMessageDialog(this, "Inserisci tutti i dati", "Errore", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         String nome = txtNome.getText(), cognome = txtCognome.getText();
         Classe classe = (Classe)cmbClasse.getSelectedItem();
         Studente s = new Studente(nome, cognome, classe);
-        GestioneDatabase.inserisciStudente(nome, cognome, classe.getId());
-        //assegnazione id studente
+        s.setMatricola(GestioneDatabase.inserisciStudente(nome, cognome, classe.getId()));
         GestioneStudenti.aggiungiStudente(s);
+        aggiornaTabella();
     }//GEN-LAST:event_btnCreaStudenteActionPerformed
 
     /**
-     * Metodo per controllare se le textbox sono vuote
+     * Metodo per controllare se le text box sono vuote
      * @return true se sono vuote, false altrimenti
      */
     public boolean controlloTextBox(){
-        return txtNome.getText().equals("") || txtCognome.getText().equals("");
+        return txtNome.getText().isBlank() || txtCognome.getText().isBlank();
+    }
+    
+    /**
+     * Metodo per aggiornare la tabella
+     */
+    public void aggiornaTabella() {
+        model.setRowCount(0);
+        for (Studente s : GestioneDatabase.getListaStudenti()) {
+            model.addRow(new Object[]{s.getMatricola(), s.getNome(), s.getCognome(), s.getClasse()});
+        }
+    }
+
+    public void configuraComboBox(){
+        for (Classe c : GestioneDatabase.getListaClassi()) {
+            cmbClasse.addItem(c);
+        }
     }
     /**
      * @param args the command line arguments
@@ -178,8 +200,6 @@ public class FrmStudente extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new FrmStudente().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
