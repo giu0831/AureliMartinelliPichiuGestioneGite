@@ -18,6 +18,18 @@ public class AureliMartinelliPichiuGestioneGite {
         GestioneDatabase.creaTabellaGite();
         GestioneDatabase.creaTabellaStudenti();
         GestioneDatabase.creaTabellaPartecipazioni();
+        //carica tutte le classi dal database
+        for (Classe c : GestioneDatabase.getListaClassi()) {
+            GestioneClassi.aggiungiClasse(c);
+        }
+        // Carica tutte le gite dal database 
+        for (Gita g : GestioneDatabase.getListaGite()) {
+            GestioneGite.aggiungiGita(g);
+        }
+        // Carica tutti gli studenti dal database 
+        for (Studente s : GestioneDatabase.getListaStudenti()) {
+            GestioneStudenti.aggiungiStudente(s);
+        }
         java.awt.EventQueue.invokeLater(() -> new FrmGestioneGite().setVisible(true));
     }
     

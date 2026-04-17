@@ -442,7 +442,46 @@ public class GestioneDatabase {
     }
 
     /**
+     * Restituisce la lista di tutte le gite a cui è iscritto uno specifico studente
+     * @param idStudente L'ID (stu_id) dello studente
+     * @return ArrayList di oggetti Gita
+     */
+    public static ArrayList<Gita> getGiteStudente(int idStudente) {
+        ArrayList<Gita> lista = new ArrayList<>();
+        
+        // La query unisce la tabella "partecipazioni" e "gite"
+        // e filtra i risultati usando l'ID dello studente
+        String sql = "SELECT g.git_id, g.git_destinazione, g.git_durata, g.git_prezzo " +
+                     "FROM partecipazioni p " +
+                     "JOIN gite g ON p.par_git_id = g.git_id " +
+                     "WHERE p.par_stu_id = ?";
+
+        try (Connection conn = DriverManager.getConnection(url);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setInt(1, idStudente);
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                // Crea l'oggetto Gita usando i dati appena pescati dal database
+                Gita g = new Gita(
+                    rs.getInt("git_id"),
+                    rs.getString("git_destinazione"),
+                    rs.getInt("git_durata"), 
+                    rs.getInt("git_prezzo")
+                );
+                lista.add(g);
+            }
+        } catch (SQLException e) {
+            System.out.println("Errore caricamento gite dello studente: " + e.getMessage());
+        }
+        return lista;
+    }
+    
+    /**
      * Restituisce la lista degli studenti iscritti a una specifica gita
+     * @param idGita
+     * @return 
      */
     public static ArrayList<Studente> getPartecipantiGita(int idGita) {
         ArrayList<Studente> lista = new ArrayList<>();

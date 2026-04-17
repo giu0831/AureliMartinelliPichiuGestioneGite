@@ -45,6 +45,7 @@ public class FrmGestioneGite extends javax.swing.JFrame {
         tblClassi = new javax.swing.JTable();
         srpGite = new javax.swing.JScrollPane();
         tblGite = new javax.swing.JTable();
+        btnVediIscrizioni = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gestione gite");
@@ -123,7 +124,7 @@ public class FrmGestioneGite extends javax.swing.JFrame {
         btnIscrivi.setFont(new java.awt.Font("Yu Gothic UI Semilight", 0, 14)); // NOI18N
         btnIscrivi.setText("Iscrivi");
         getContentPane().add(btnIscrivi);
-        btnIscrivi.setBounds(400, 210, 185, 35);
+        btnIscrivi.setBounds(400, 170, 185, 35);
 
         btnElimina.setFont(new java.awt.Font("Yu Gothic UI Semilight", 0, 14)); // NOI18N
         btnElimina.setText("Elimina");
@@ -192,6 +193,11 @@ public class FrmGestioneGite extends javax.swing.JFrame {
 
         getContentPane().add(srpGite);
         srpGite.setBounds(20, 110, 360, 241);
+
+        btnVediIscrizioni.setFont(new java.awt.Font("Yu Gothic UI Semilight", 0, 14)); // NOI18N
+        btnVediIscrizioni.setText("Vedi iscrizioni");
+        getContentPane().add(btnVediIscrizioni);
+        btnVediIscrizioni.setBounds(400, 240, 185, 35);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -285,6 +291,7 @@ public class FrmGestioneGite extends javax.swing.JFrame {
     private javax.swing.JButton btnAggiungi;
     private javax.swing.JButton btnElimina;
     private javax.swing.JButton btnIscrivi;
+    private javax.swing.JButton btnVediIscrizioni;
     private javax.swing.JComboBox<String> cmbTabelle;
     private javax.swing.JLabel lblGestioneMagazzino;
     private javax.swing.JPanel pnlTitoloGestioneMagazzino;
