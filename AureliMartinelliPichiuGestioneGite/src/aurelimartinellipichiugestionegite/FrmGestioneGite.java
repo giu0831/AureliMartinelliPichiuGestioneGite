@@ -21,6 +21,7 @@ public class FrmGestioneGite extends javax.swing.JFrame {
         initComponents();
         aggiornaTabellaClassi();
         aggiornaTabellaGite();
+        aggiornaTabellaStudenti();
         srpClassi.setVisible(false);
         srpGite.setVisible(false);
     }
@@ -166,10 +167,7 @@ public class FrmGestioneGite extends javax.swing.JFrame {
 
         tblGite.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Id", "Destinazione", "Durata", "Prezzo"
@@ -210,8 +208,9 @@ public class FrmGestioneGite extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Devi creare una classe prima di creare uno studente", "Attenzione", JOptionPane.WARNING_MESSAGE);
                 return;
             }
+            DefaultTableModel model = (DefaultTableModel)tblStudenti.getModel();
             // Apre il form per aggiungere uno studente
-            FrmStudente frmStudente = new FrmStudente();
+            FrmStudente frmStudente = new FrmStudente(model);
             frmStudente.setVisible(true);
             
         } else if (oggettoSelezionato.equals("Classi")) {
@@ -273,6 +272,18 @@ public class FrmGestioneGite extends javax.swing.JFrame {
         model.setRowCount(0);
         for (Gita g : GestioneDatabase.getListaGite()) {
             model.addRow(new Object[]{g.getId(), g.getDestinazione(), g.getDurata(), g.getPrezzo()});
+        }
+
+    }
+    
+    /**
+     * Metodo per aggiornare la tabella con le classi
+     */
+    public void aggiornaTabellaStudenti(){
+        DefaultTableModel model = (DefaultTableModel)tblStudenti.getModel();
+        model.setRowCount(0);
+        for (Studente s : GestioneDatabase.getListaStudenti()) {
+            model.addRow(new Object[]{s.getMatricola(), s.getNome(), s.getCognome(), s.getClasse()});
         }
 
     }
