@@ -239,6 +239,99 @@ public class GestioneDatabase {
     }
    
     /**
+     * Metodo per rimuovere uno studente
+     * @param idStudente
+     * @return 
+     */
+    public static boolean rimuoviStudente(int idStudente) {
+        String sql = "DELETE FROM studenti WHERE stu_id = ?";
+        try (Connection conn = DriverManager.getConnection(url); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, idStudente);
+            int righeModificate = pstmt.executeUpdate();
+            if (righeModificate > 0) {
+                System.out.println("Studente rimosso con successo!");
+                return true;
+            } else {
+                System.out.println("Nessuno studente trovato con ID: " + idStudente);
+                return false;
+            }
+        } catch (SQLException e) {
+            System.out.println("Errore rimozione studente: " + e.getMessage());
+            return false;
+        }
+    }
+
+    /**
+     * Metodo per rimuovere una gita
+     * @param idGita
+     * @return 
+     */
+    public static boolean rimuoviGita(int idGita) {
+        String sql = "DELETE FROM gite WHERE git_id = ?";
+        try (Connection conn = DriverManager.getConnection(url); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, idGita);
+            int righeModificate = pstmt.executeUpdate();
+            if (righeModificate > 0) {
+                System.out.println("Gita rimossa con successo!");
+                return true;
+            } else {
+                System.out.println("Nessuna gita trovata con ID: " + idGita);
+                return false;
+            }
+        } catch (SQLException e) {
+            System.out.println("Errore rimozione gita: " + e.getMessage());
+            return false;
+        }
+    }
+
+    /**
+     * Metodo per rimuovere una classe
+     * @param idClasse
+     * @return 
+     */
+    public static boolean rimuoviClasse(int idClasse) {
+        String sql = "DELETE FROM classi WHERE cla_id = ?";
+        try (Connection conn = DriverManager.getConnection(url); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, idClasse);
+            int righeModificate = pstmt.executeUpdate();
+            if (righeModificate > 0) {
+                System.out.println("Classe rimossa con successo!");
+                return true;
+            } else {
+                System.out.println("Nessuna classe trovata con ID: " + idClasse);
+                return false;
+            }
+        } catch (SQLException e) {
+            System.out.println("Errore rimozione classe: " + e.getMessage());
+            return false;
+        }
+    }
+
+    /**
+     * Metodo per rimuovere una partecipazione
+     * @param idStudente
+     * @param idGita
+     * @return 
+     */
+    public static boolean rimuoviPartecipazione(int idStudente, int idGita) {
+        String sql = "DELETE FROM partecipazioni WHERE par_stu_id = ? AND par_git_id = ?";
+        try (Connection conn = DriverManager.getConnection(url); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, idStudente);
+            pstmt.setInt(2, idGita);
+            int righeModificate = pstmt.executeUpdate();
+            if (righeModificate > 0) {
+                System.out.println("Partecipazione rimossa con successo!");
+                return true;
+            } else {
+                System.out.println("Nessuna partecipazione trovata.");
+                return false;
+            }
+        } catch (SQLException e) {
+            System.out.println("Errore rimozione partecipazione: " + e.getMessage());
+            return false;
+        }
+    }
+    /**
      * Restituisce la lista di tutte le classi
      */
     public static ArrayList<Classe> getListaClassi() {
@@ -373,4 +466,8 @@ public class GestioneDatabase {
         }
         return lista;
     }
+    
+    
+    
+    
 }
