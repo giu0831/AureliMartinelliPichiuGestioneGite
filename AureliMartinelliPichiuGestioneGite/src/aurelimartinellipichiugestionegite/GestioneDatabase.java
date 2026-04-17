@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package aurelimartinellipichiugestionegite;
 
 import java.sql.*;
@@ -34,9 +30,9 @@ public class GestioneDatabase {
     public static boolean creaTabellaClassi() {
         String sql = "CREATE TABLE IF NOT EXISTS classi (\n"  
            + " cla_id INTEGER PRIMARY KEY AUTOINCREMENT,\n"  
-           + " cla_anno INTEGER NOT NULL,\n"            // Es: 3, 4
-           + " cla_sezione TEXT NOT NULL,\n"            // Es: "A", "B"
-           + " cla_indirizzo TEXT NOT NULL,\n"          // Es: "Informatica", "Linguistico"
+           + " cla_anno INTEGER NOT NULL,\n"             // Es: 3, 4
+           + " cla_sezione TEXT NOT NULL,\n"             // Es: "A", "B"
+           + " cla_indirizzo TEXT NOT NULL,\n"           // Es: "Informatica", "Linguistico"
            + " UNIQUE(cla_anno, cla_sezione, cla_indirizzo)\n" // Evita duplicati come due "3 A Informatica"
            + ");";
         try (Connection conn = DriverManager.getConnection(url);  
@@ -135,26 +131,32 @@ public class GestioneDatabase {
      * @param anno Es: 3, 4, 5
      * @param sezione Es: "A", "B"
      * @param indirizzo Es: "Informatica", "Linguistico"
-     * @return true se l'inserimento è riuscito
+     * @return L'ID generato per la classe, oppure -1 in caso di errore
      */
-    public static boolean inserisciClasse(int anno, String sezione, String indirizzo) {
+    public static int inserisciClasse(int anno, String sezione, String indirizzo) {
         String sql = "INSERT INTO classi (cla_anno, cla_sezione, cla_indirizzo) VALUES (?, ?, ?)";
 
         try (Connection conn = DriverManager.getConnection(url);
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+             PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             pstmt.setInt(1, anno);
             pstmt.setString(2, sezione);
             pstmt.setString(3, indirizzo);
 
             pstmt.executeUpdate();
-            System.out.println("Classe inserita con successo!");
-            return true;
+            
+            try (ResultSet rs = pstmt.getGeneratedKeys()) {
+                if (rs.next()) {
+                    int idGenerato = rs.getInt(1);
+                    System.out.println("Classe inserita con successo! Nuovo ID: " + idGenerato);
+                    return idGenerato;
+                }
+            }
 
         } catch (SQLException e) {
             System.out.println("Errore inserimento classe: " + e.getMessage());
-            return false;
         }
+        return -1;
     }
 
     /**
@@ -162,26 +164,32 @@ public class GestioneDatabase {
      * @param destinazione Es: "Roma", "Parigi"
      * @param durata Es: "3 giorni", "1 giorno"
      * @param prezzo Prezzo in euro
-     * @return true se l'inserimento è riuscito
+     * @return L'ID generato per la gita, oppure -1 in caso di errore
      */
-    public static boolean inserisciGita(String destinazione, String durata, int prezzo) {
+    public static int inserisciGita(String destinazione, String durata, int prezzo) {
         String sql = "INSERT INTO gite (git_destinazione, git_durata, git_prezzo) VALUES (?, ?, ?)";
 
         try (Connection conn = DriverManager.getConnection(url);
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+             PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             pstmt.setString(1, destinazione);
             pstmt.setString(2, durata);
             pstmt.setInt(3, prezzo);
 
             pstmt.executeUpdate();
-            System.out.println("Gita inserita con successo!");
-            return true;
+            
+            try (ResultSet rs = pstmt.getGeneratedKeys()) {
+                if (rs.next()) {
+                    int idGenerato = rs.getInt(1);
+                    System.out.println("Gita inserita con successo! Nuovo ID: " + idGenerato);
+                    return idGenerato;
+                }
+            }
 
         } catch (SQLException e) {
             System.out.println("Errore inserimento gita: " + e.getMessage());
-            return false;
         }
+        return -1;
     }
 
     /**
@@ -189,26 +197,32 @@ public class GestioneDatabase {
      * @param nome Nome studente
      * @param cognome Cognome studente
      * @param idClasse L'ID (cla_id) della classe a cui appartiene
-     * @return true se l'inserimento è riuscito
+     * @return L'ID generato per lo studente, oppure -1 in caso di errore
      */
-    public static boolean inserisciStudente(String nome, String cognome, int idClasse) {
+    public static int inserisciStudente(String nome, String cognome, int idClasse) {
         String sql = "INSERT INTO studenti (stu_nome, stu_cognome, stu_cla_id) VALUES (?, ?, ?)";
 
         try (Connection conn = DriverManager.getConnection(url);
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+             PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             pstmt.setString(1, nome);
             pstmt.setString(2, cognome);
             pstmt.setInt(3, idClasse);
 
             pstmt.executeUpdate();
-            System.out.println("Studente inserito con successo!");
-            return true;
+            
+            try (ResultSet rs = pstmt.getGeneratedKeys()) {
+                if (rs.next()) {
+                    int idGenerato = rs.getInt(1);
+                    System.out.println("Studente inserito con successo! Nuovo ID: " + idGenerato);
+                    return idGenerato;
+                }
+            }
 
         } catch (SQLException e) {
             System.out.println("Errore inserimento studente: " + e.getMessage());
-            return false;
         }
+        return -1;
     }
 
     /**
@@ -331,6 +345,7 @@ public class GestioneDatabase {
             return false;
         }
     }
+    
     /**
      * Restituisce la lista di tutte le classi
      */
@@ -466,8 +481,4 @@ public class GestioneDatabase {
         }
         return lista;
     }
-    
-    
-    
-    
 }

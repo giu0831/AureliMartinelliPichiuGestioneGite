@@ -4,6 +4,9 @@
  */
 package aurelimartinellipichiugestionegite;
 
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author aureli.giulia
@@ -11,12 +14,13 @@ package aurelimartinellipichiugestionegite;
 public class FrmClasse extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmClasse.class.getName());
-
+    private DefaultTableModel model;
     /**
      * Creates new form FrmClasse
      */
-    public FrmClasse() {
+    public FrmClasse(DefaultTableModel model) {
         initComponents();
+        this.model = model;
     }
 
     /**
@@ -55,6 +59,7 @@ public class FrmClasse extends javax.swing.JFrame {
         txtIndirizzo.setColumns(5);
 
         btnCreaClasse.setText("Crea");
+        btnCreaClasse.addActionListener(this::btnCreaClasseActionPerformed);
 
         javax.swing.GroupLayout pnlMenuLayout = new javax.swing.GroupLayout(pnlMenu);
         pnlMenu.setLayout(pnlMenuLayout);
@@ -148,6 +153,37 @@ public class FrmClasse extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnCreaClasseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreaClasseActionPerformed
+        if(controlloTextBox()){
+            JOptionPane.showMessageDialog(this, "Compila tutti i campi", "Errore", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        int anno = Integer.valueOf(txtAnno.getText());
+        Classe c = new Classe(anno, txtSezione.getText(), txtIndirizzo.getText());
+        GestioneClassi.aggiungiClasse(c);
+        c.setId(GestioneDatabase.inserisciClasse(anno, c.getSezione(), c.getIndirizzo()));
+        aggiornaTabella();
+        System.out.println("Classe aggiunta");
+    }//GEN-LAST:event_btnCreaClasseActionPerformed
+
+    /**
+     * Metodo per controllare se le text box sono vuote
+     * @return true se sono vuote, false altrimenti
+     */
+    public boolean controlloTextBox(){
+        return txtAnno.getText().isBlank() || txtSezione.getText().isBlank() || txtIndirizzo.getText().isBlank();
+    }
+    
+    /**
+     * Metodo per aggiornare la tabella
+     */
+    public void aggiornaTabella() {
+        model.setRowCount(0);
+        for (Classe c : GestioneDatabase.getListaClassi()) {
+            model.addRow(new Object[]{c.getId(), c.getAnno(), c.getSezione(), c.getIndirizzo()});
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -169,8 +205,7 @@ public class FrmClasse extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new FrmClasse().setVisible(true));
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

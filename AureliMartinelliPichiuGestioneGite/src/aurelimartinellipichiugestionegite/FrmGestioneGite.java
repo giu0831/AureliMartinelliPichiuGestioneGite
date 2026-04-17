@@ -6,6 +6,7 @@
 package aurelimartinellipichiugestionegite;
 
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -18,6 +19,7 @@ public class FrmGestioneGite extends javax.swing.JFrame {
     /** Creates new form FrmPartecipazione */
     public FrmGestioneGite() {
         initComponents();
+        aggiornaTabellaClassi();
         srpClassi.setVisible(false);
         srpGite.setVisible(false);
     }
@@ -206,8 +208,9 @@ public class FrmGestioneGite extends javax.swing.JFrame {
             frmStudente.setVisible(true);
             
         } else if (oggettoSelezionato.equals("Classi")) {
+            DefaultTableModel model = (DefaultTableModel)tblClassi.getModel();
             // Apre il form per aggiungere una classe
-            FrmClasse frmClasse = new FrmClasse();
+            FrmClasse frmClasse = new FrmClasse(model);
             frmClasse.setVisible(true);
             
         } else if (oggettoSelezionato.equals("Gite")) {
@@ -242,6 +245,17 @@ public class FrmGestioneGite extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnEliminaActionPerformed
 
+    /**
+     * Metodo per aggiornare la tabella con le classi
+     */
+    public void aggiornaTabellaClassi(){
+        DefaultTableModel model = (DefaultTableModel)tblClassi.getModel();
+        model.setRowCount(0);
+        for (Classe c : GestioneDatabase.getListaClassi()) {
+            model.addRow(new Object[]{c.getId(), c.getAnno(), c.getSezione(), c.getIndirizzo()});
+        }
+
+    }
     /**
      * @param args the command line arguments
      */
