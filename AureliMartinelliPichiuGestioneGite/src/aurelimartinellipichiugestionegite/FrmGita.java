@@ -4,6 +4,9 @@
  */
 package aurelimartinellipichiugestionegite;
 
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author aureli.giulia
@@ -11,12 +14,13 @@ package aurelimartinellipichiugestionegite;
 public class FrmGita extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmGita.class.getName());
-
+    private DefaultTableModel model;
     /**
      * Creates new form FrmGita
      */
-    public FrmGita() {
+    public FrmGita(DefaultTableModel model) {
         initComponents();
+        this.model = model;
     }
 
     /**
@@ -79,6 +83,7 @@ public class FrmGita extends javax.swing.JFrame {
 
         btnCreaGita.setFont(new java.awt.Font("Segoe UI Light", 1, 12)); // NOI18N
         btnCreaGita.setText("Crea");
+        btnCreaGita.addActionListener(this::btnCreaGitaActionPerformed);
 
         txtDurata.setColumns(5);
 
@@ -144,6 +149,34 @@ public class FrmGita extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnCreaGitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreaGitaActionPerformed
+        if(controlloTextBox()){
+            JOptionPane.showMessageDialog(this, "Compila tutti i campi", "Errore", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        int durata = Integer.valueOf(txtDurata.getText()), prezzo = Integer.valueOf(txtPrezzo.getText());
+        Gita g = new Gita(txtDestinazione.getText(), durata, prezzo);
+        g.setId(GestioneDatabase.inserisciGita(txtDestinazione.getText(), durata, prezzo));
+        aggiornaTabella();
+        System.out.println("Gita aggiunta");
+    }//GEN-LAST:event_btnCreaGitaActionPerformed
+
+    /**
+     * Metodo per controllare se le text box sono vuote
+     * @return true se sono vuote, false altrimenti
+     */
+    public boolean controlloTextBox(){
+        return txtDestinazione.getText().isBlank() || txtDurata.getText().isBlank() || txtPrezzo.getText().isBlank();
+    }
+    /**
+     * Metodo per aggiornare la tabella
+     */
+    public void aggiornaTabella() {
+        model.setRowCount(0);
+        for (Gita g : GestioneDatabase.getListaGite()) {
+            model.addRow(new Object[]{g.getId(), g.getDestinazione(), g.getDurata(), g.getPrezzo()});
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -165,8 +198,6 @@ public class FrmGita extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new FrmGita().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

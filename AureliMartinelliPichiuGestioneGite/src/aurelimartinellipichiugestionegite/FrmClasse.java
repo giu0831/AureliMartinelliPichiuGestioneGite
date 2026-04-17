@@ -160,8 +160,8 @@ public class FrmClasse extends javax.swing.JFrame {
         }
         int anno = Integer.valueOf(txtAnno.getText());
         Classe c = new Classe(anno, txtSezione.getText(), txtIndirizzo.getText());
-        GestioneClassi.aggiungiClasse(c);
         c.setId(GestioneDatabase.inserisciClasse(anno, c.getSezione(), c.getIndirizzo()));
+        GestioneClassi.aggiungiClasse(c);
         aggiornaTabella();
         System.out.println("Classe aggiunta");
     }//GEN-LAST:event_btnCreaClasseActionPerformed

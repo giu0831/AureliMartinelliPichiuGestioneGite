@@ -20,6 +20,7 @@ public class FrmGestioneGite extends javax.swing.JFrame {
     public FrmGestioneGite() {
         initComponents();
         aggiornaTabellaClassi();
+        aggiornaTabellaGite();
         srpClassi.setVisible(false);
         srpGite.setVisible(false);
     }
@@ -220,8 +221,9 @@ public class FrmGestioneGite extends javax.swing.JFrame {
             frmClasse.setVisible(true);
             
         } else if (oggettoSelezionato.equals("Gite")) {
+            DefaultTableModel model = (DefaultTableModel)tblGite.getModel();
             // Apre il form per aggiungere una gita
-            FrmGita frmGita = new FrmGita();
+            FrmGita frmGita = new FrmGita(model);
             frmGita.setVisible(true);
         }
     }//GEN-LAST:event_btnAggiungiActionPerformed
@@ -259,6 +261,18 @@ public class FrmGestioneGite extends javax.swing.JFrame {
         model.setRowCount(0);
         for (Classe c : GestioneDatabase.getListaClassi()) {
             model.addRow(new Object[]{c.getId(), c.getAnno(), c.getSezione(), c.getIndirizzo()});
+        }
+
+    }
+    
+    /**
+     * Metodo per aggiornare la tabella con le classi
+     */
+    public void aggiornaTabellaGite(){
+        DefaultTableModel model = (DefaultTableModel)tblGite.getModel();
+        model.setRowCount(0);
+        for (Gita g : GestioneDatabase.getListaGite()) {
+            model.addRow(new Object[]{g.getId(), g.getDestinazione(), g.getDurata(), g.getPrezzo()});
         }
 
     }

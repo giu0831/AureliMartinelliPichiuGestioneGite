@@ -56,7 +56,7 @@ public class GestioneDatabase {
         String sql = "CREATE TABLE IF NOT EXISTS gite (\n"  
            + " git_id INTEGER PRIMARY KEY AUTOINCREMENT,\n"  
            + " git_destinazione TEXT NOT NULL,\n"  
-           + " git_durata TEXT NOT NULL,\n"            
+           + " git_durata INTEGER NOT NULL,\n"          // MODIFICATO: ora è INTEGER  
            + " git_prezzo INTEGER NOT NULL\n"       
            + ");";
 
@@ -162,18 +162,18 @@ public class GestioneDatabase {
     /**
      * Inserisce una nuova gita
      * @param destinazione Es: "Roma", "Parigi"
-     * @param durata Es: "3 giorni", "1 giorno"
+     * @param durata Es: 3, 1 (in giorni)
      * @param prezzo Prezzo in euro
      * @return L'ID generato per la gita, oppure -1 in caso di errore
      */
-    public static int inserisciGita(String destinazione, String durata, int prezzo) {
+    public static int inserisciGita(String destinazione, int durata, int prezzo) { // MODIFICATO: durata è int
         String sql = "INSERT INTO gite (git_destinazione, git_durata, git_prezzo) VALUES (?, ?, ?)";
 
         try (Connection conn = DriverManager.getConnection(url);
              PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             pstmt.setString(1, destinazione);
-            pstmt.setString(2, durata);
+            pstmt.setInt(2, durata); // MODIFICATO: setInt
             pstmt.setInt(3, prezzo);
 
             pstmt.executeUpdate();
@@ -364,7 +364,7 @@ public class GestioneDatabase {
                     rs.getInt("cla_anno"),
                     rs.getString("cla_sezione"),
                     rs.getString("cla_indirizzo")
-                   
+                    
                 );
                 lista.add(c);
             }
@@ -396,9 +396,9 @@ public class GestioneDatabase {
                     rs.getInt("cla_anno"), 
                     rs.getString("cla_sezione"), 
                     rs.getString("cla_indirizzo")
-                   
+                    
                 );
-               
+                
                 Studente s = new Studente(
                     rs.getInt("stu_id"),
                     rs.getString("stu_nome"),
@@ -431,7 +431,7 @@ public class GestioneDatabase {
                     rs.getString("git_destinazione"),
                     rs.getInt("git_durata"), 
                     rs.getInt("git_prezzo")
-                   
+                    
                 );
                 lista.add(g);
             }
@@ -506,7 +506,7 @@ public class GestioneDatabase {
                     rs.getString("cla_sezione"), 
                     rs.getString("cla_indirizzo")
                 );
-               
+                
                 Studente s = new Studente(
                     rs.getInt("stu_id"),
                     rs.getString("stu_nome"),
