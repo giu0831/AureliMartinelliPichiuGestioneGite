@@ -62,7 +62,7 @@ public class FrmAssegnaClasse extends javax.swing.JFrame {
 
         pnlTitolo.setBackground(new java.awt.Color(153, 204, 255));
 
-        lblAssegnaClasse.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblAssegnaClasse.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 18)); // NOI18N
         lblAssegnaClasse.setText("Assegna Classe");
 
         javax.swing.GroupLayout pnlTitoloLayout = new javax.swing.GroupLayout(pnlTitolo);
@@ -110,7 +110,7 @@ public class FrmAssegnaClasse extends javax.swing.JFrame {
         });
         JScrollPane.setViewportView(tblAssegnaClasse);
 
-        btnConferma.setFont(new java.awt.Font("Segoe UI Light", 1, 12)); // NOI18N
+        btnConferma.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 12)); // NOI18N
         btnConferma.setText("Conferma");
 
         javax.swing.GroupLayout pnlBaseLayout = new javax.swing.GroupLayout(pnlBase);

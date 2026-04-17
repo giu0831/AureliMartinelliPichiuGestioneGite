@@ -137,7 +137,7 @@
             <Component class="javax.swing.JLabel" name="lblAssegnaClasse">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI" size="18" style="1"/>
+                  <Font name="Yu Gothic UI Semibold" size="18" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Assegna Classe"/>
               </Properties>
@@ -177,7 +177,7 @@
         <Component class="javax.swing.JButton" name="btnConferma">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI Light" size="12" style="1"/>
+              <Font name="Yu Gothic UI Semibold" size="12" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Conferma"/>
           </Properties>

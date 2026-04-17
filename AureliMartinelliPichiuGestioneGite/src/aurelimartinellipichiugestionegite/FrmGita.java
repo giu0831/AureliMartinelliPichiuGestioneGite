@@ -48,7 +48,7 @@ public class FrmGita extends javax.swing.JFrame {
 
         pnlCreazioneClasse.setBackground(new java.awt.Color(153, 204, 255));
 
-        lblCreazioneGita.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblCreazioneGita.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 18)); // NOI18N
         lblCreazioneGita.setText("Creazione gita");
 
         javax.swing.GroupLayout pnlCreazioneClasseLayout = new javax.swing.GroupLayout(pnlCreazioneClasse);
@@ -68,20 +68,20 @@ public class FrmGita extends javax.swing.JFrame {
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
-        lblDestinazione.setFont(new java.awt.Font("Segoe UI Light", 1, 12)); // NOI18N
+        lblDestinazione.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 12)); // NOI18N
         lblDestinazione.setText("Destinazione");
 
-        lblDurata.setFont(new java.awt.Font("Segoe UI Light", 1, 12)); // NOI18N
+        lblDurata.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 12)); // NOI18N
         lblDurata.setText("Durata");
 
-        lblPrezzo.setFont(new java.awt.Font("Segoe UI Light", 1, 12)); // NOI18N
+        lblPrezzo.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 12)); // NOI18N
         lblPrezzo.setText("Prezzo");
 
         txtDestinazione.setColumns(5);
 
         txtPrezzo.setColumns(5);
 
-        btnCreaGita.setFont(new java.awt.Font("Segoe UI Light", 1, 12)); // NOI18N
+        btnCreaGita.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 12)); // NOI18N
         btnCreaGita.setText("Crea");
         btnCreaGita.addActionListener(this::btnCreaGitaActionPerformed);
 
