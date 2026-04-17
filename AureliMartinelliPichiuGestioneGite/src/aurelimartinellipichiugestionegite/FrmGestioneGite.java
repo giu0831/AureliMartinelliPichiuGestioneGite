@@ -125,6 +125,7 @@ public class FrmGestioneGite extends javax.swing.JFrame {
 
         btnIscrivi.setFont(new java.awt.Font("Yu Gothic UI Semilight", 0, 14)); // NOI18N
         btnIscrivi.setText("Iscrivi");
+        btnIscrivi.addActionListener(this::btnIscriviActionPerformed);
         getContentPane().add(btnIscrivi);
         btnIscrivi.setBounds(400, 170, 185, 35);
 
@@ -195,6 +196,7 @@ public class FrmGestioneGite extends javax.swing.JFrame {
 
         btnVediIscrizioni.setFont(new java.awt.Font("Yu Gothic UI Semilight", 0, 14)); // NOI18N
         btnVediIscrizioni.setText("Vedi iscrizioni");
+        btnVediIscrizioni.addActionListener(this::btnVediIscrizioniActionPerformed);
         getContentPane().add(btnVediIscrizioni);
         btnVediIscrizioni.setBounds(400, 240, 185, 35);
 
@@ -202,8 +204,8 @@ public class FrmGestioneGite extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAggiungiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAggiungiActionPerformed
-        String oggettoSelezionato = cmbTabelle.getSelectedItem().toString();
-        if (oggettoSelezionato.equals("Studenti")) {
+        String tabellaSelezionata = cmbTabelle.getSelectedItem().toString();
+        if (tabellaSelezionata.equals("Studenti")) {
             if(GestioneClassi.getListaClassi().size() == 0){
                 JOptionPane.showMessageDialog(this, "Devi creare una classe prima di creare uno studente", "Attenzione", JOptionPane.WARNING_MESSAGE);
                 return;
@@ -213,13 +215,13 @@ public class FrmGestioneGite extends javax.swing.JFrame {
             FrmStudente frmStudente = new FrmStudente(model);
             frmStudente.setVisible(true);
             
-        } else if (oggettoSelezionato.equals("Classi")) {
+        } else if (tabellaSelezionata.equals("Classi")) {
             DefaultTableModel model = (DefaultTableModel)tblClassi.getModel();
             // Apre il form per aggiungere una classe
             FrmClasse frmClasse = new FrmClasse(model);
             frmClasse.setVisible(true);
             
-        } else if (oggettoSelezionato.equals("Gite")) {
+        } else if (tabellaSelezionata.equals("Gite")) {
             DefaultTableModel model = (DefaultTableModel)tblGite.getModel();
             // Apre il form per aggiungere una gita
             FrmGita frmGita = new FrmGita(model);
@@ -242,15 +244,24 @@ public class FrmGestioneGite extends javax.swing.JFrame {
     }//GEN-LAST:event_cmbTabelleItemStateChanged
 
     private void btnEliminaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminaActionPerformed
-        String oggettoSelezionato = cmbTabelle.getSelectedItem().toString();
-        if (oggettoSelezionato.equals("Studenti")) {
+        String tabellaSelezionata = cmbTabelle.getSelectedItem().toString();
+        if (tabellaSelezionata.equals("Studenti")) {
             //codice eliminazione
-        } else if (oggettoSelezionato.equals("Classi")) {
+        } else if (tabellaSelezionata.equals("Classi")) {
 
-        } else if (oggettoSelezionato.equals("Gite")) {
+        } else if (tabellaSelezionata.equals("Gite")) {
             
         }
     }//GEN-LAST:event_btnEliminaActionPerformed
+
+    private void btnIscriviActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIscriviActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnIscriviActionPerformed
+
+    private void btnVediIscrizioniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVediIscrizioniActionPerformed
+        FrmVediIscrizioni frmVediIscrizioni = new FrmVediIscrizioni(GestioneStudenti.cercaPerMatricola(getMatricolaStudenteSelezionato()));
+        frmVediIscrizioni.setVisible(true);
+    }//GEN-LAST:event_btnVediIscrizioniActionPerformed
 
     /**
      * Metodo per aggiornare la tabella con le classi
@@ -287,6 +298,23 @@ public class FrmGestioneGite extends javax.swing.JFrame {
         }
 
     }
+    
+    /**
+     * Restituisce l'ID (matricola) dello studente attualmente selezionato nella
+     * tabella.
+     *
+     * @return L'ID dello studente, oppure -1 se nessuna riga è selezionata.
+     */
+    private int getMatricolaStudenteSelezionato() {
+        int rigaSelezionata = tblStudenti.getSelectedRow();
+        if (rigaSelezionata != -1) {
+            Integer matricola = (Integer)tblStudenti.getValueAt(rigaSelezionata, 0);
+            return Integer.parseInt(matricola.toString());
+
+        }
+        return -1;
+    }
+
     /**
      * @param args the command line arguments
      */

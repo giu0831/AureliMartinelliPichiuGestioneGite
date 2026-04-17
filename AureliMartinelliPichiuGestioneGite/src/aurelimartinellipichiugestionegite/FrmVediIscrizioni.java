@@ -8,15 +8,17 @@ package aurelimartinellipichiugestionegite;
  *
  * @author martinelli.alessandr
  */
-public class FrmVediIscrizione extends javax.swing.JFrame {
+public class FrmVediIscrizioni extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmVediIscrizione.class.getName());
-
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmVediIscrizioni.class.getName());
+    private Studente s;
     /**
      * Creates new form FrmVediIscrizione
      */
-    public FrmVediIscrizione() {
+    public FrmVediIscrizioni(Studente s) {
         initComponents();
+        this.s = s;
+        configuraLabel();
     }
 
     /**
@@ -128,13 +130,13 @@ public class FrmVediIscrizione extends javax.swing.JFrame {
             .addGroup(pnlSfondoLayout.createSequentialGroup()
                 .addComponent(pnlVediIscrizione, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(pnlSfondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnlSfondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblIscrizioneNome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblIscrizioneCognome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblIscrizioneClasse, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblCognome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblClasse, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblNome, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblNome, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26))
@@ -156,6 +158,11 @@ public class FrmVediIscrizione extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void configuraLabel(){
+        lblNome.setText(s.getNome());
+        lblCognome.setText(s.getCognome());
+        lblClasse.setText(s.getClasse().toString());
+    }
     /**
      * @param args the command line arguments
      */
@@ -176,9 +183,6 @@ public class FrmVediIscrizione extends javax.swing.JFrame {
             logger.log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new FrmVediIscrizione().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -47,4 +47,16 @@ public class GestioneStudenti {
         }
         return false;
     }
+    
+    /**
+     * Metodo per cercare uno studente in base alla matricola
+     * @param matricola
+     * @return 
+     */
+    public static Studente cercaPerMatricola(int matricola){
+        for(Studente s : listaStudenti){
+            if(s.getMatricola() == matricola)return s;
+        }
+        return null;
+    }
 }
