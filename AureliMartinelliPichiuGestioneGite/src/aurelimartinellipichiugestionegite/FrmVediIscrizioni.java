@@ -46,7 +46,7 @@ public class FrmVediIscrizioni extends javax.swing.JFrame {
 
         pnlVediIscrizione.setBackground(new java.awt.Color(153, 204, 255));
 
-        lblVediIscrizione.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblVediIscrizione.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 18)); // NOI18N
         lblVediIscrizione.setText("Vedi Iscrizione");
 
         javax.swing.GroupLayout pnlVediIscrizioneLayout = new javax.swing.GroupLayout(pnlVediIscrizione);
@@ -66,10 +66,13 @@ public class FrmVediIscrizioni extends javax.swing.JFrame {
                 .addContainerGap(27, Short.MAX_VALUE))
         );
 
+        lblIscrizioneNome.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
         lblIscrizioneNome.setText("Nome:");
 
+        lblIscrizioneCognome.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
         lblIscrizioneCognome.setText("Cognome:");
 
+        lblIscrizioneClasse.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
         lblIscrizioneClasse.setText("Classe:");
 
         tblVediIscrizione.setModel(new javax.swing.table.DefaultTableModel(
