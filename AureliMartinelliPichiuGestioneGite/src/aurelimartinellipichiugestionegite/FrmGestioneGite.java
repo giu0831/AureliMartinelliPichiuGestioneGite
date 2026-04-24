@@ -255,7 +255,14 @@ public class FrmGestioneGite extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEliminaActionPerformed
 
     private void btnIscriviActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIscriviActionPerformed
-        // TODO add your handling code here:
+        int matricola = getMatricolaStudenteSelezionato();
+        if(matricola == -1){
+            JOptionPane.showMessageDialog(this, "Devi selezionare uno studente da iscrivere", "Attenzione", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        Studente s = GestioneStudenti.cercaPerMatricola(matricola);
+        FrmIscriviStudente frmIscriviStudente = new FrmIscriviStudente(s);
+        frmIscriviStudente.setVisible(true);
     }//GEN-LAST:event_btnIscriviActionPerformed
 
     private void btnVediIscrizioniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVediIscrizioniActionPerformed

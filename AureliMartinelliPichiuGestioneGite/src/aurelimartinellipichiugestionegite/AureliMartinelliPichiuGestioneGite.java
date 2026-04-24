@@ -29,6 +29,7 @@ public class AureliMartinelliPichiuGestioneGite {
         // Carica tutti gli studenti dal database 
         for (Studente s : GestioneDatabase.getListaStudenti()) {
             GestioneStudenti.aggiungiStudente(s);
+            s.setIdGita(GestioneDatabase.getGiteStudente(s.getMatricola()));
         }
         java.awt.EventQueue.invokeLater(() -> new FrmGestioneGite().setVisible(true));
     }

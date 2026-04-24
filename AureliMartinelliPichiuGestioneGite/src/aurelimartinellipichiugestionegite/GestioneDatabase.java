@@ -446,8 +446,8 @@ public class GestioneDatabase {
      * @param idStudente L'ID (stu_id) dello studente
      * @return ArrayList di oggetti Gita
      */
-    public static ArrayList<Gita> getGiteStudente(int idStudente) {
-        ArrayList<Gita> lista = new ArrayList<>();
+    public static ArrayList<Integer> getGiteStudente(int idStudente) {
+        ArrayList<Integer> lista = new ArrayList<>();
         
         // La query unisce la tabella "partecipazioni" e "gite"
         // e filtra i risultati usando l'ID dello studente
@@ -463,14 +463,7 @@ public class GestioneDatabase {
             ResultSet rs = pstmt.executeQuery();
 
             while (rs.next()) {
-                // Crea l'oggetto Gita usando i dati appena pescati dal database
-                Gita g = new Gita(
-                    rs.getInt("git_id"),
-                    rs.getString("git_destinazione"),
-                    rs.getInt("git_durata"), 
-                    rs.getInt("git_prezzo")
-                );
-                lista.add(g);
+                lista.add(rs.getInt("git_id"));
             }
         } catch (SQLException e) {
             System.out.println("Errore caricamento gite dello studente: " + e.getMessage());

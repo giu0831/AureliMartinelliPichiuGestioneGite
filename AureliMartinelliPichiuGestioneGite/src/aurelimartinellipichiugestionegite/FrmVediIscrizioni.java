@@ -4,6 +4,9 @@
  */
 package aurelimartinellipichiugestionegite;
 
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author martinelli.alessandr
@@ -19,6 +22,7 @@ public class FrmVediIscrizioni extends javax.swing.JFrame {
         initComponents();
         this.s = s;
         configuraLabel();
+        configuraTabella();
     }
 
     /**
@@ -37,17 +41,19 @@ public class FrmVediIscrizioni extends javax.swing.JFrame {
         lblIscrizioneCognome = new javax.swing.JLabel();
         lblIscrizioneClasse = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblVediIscrizione = new javax.swing.JTable();
+        tblVediIscrizioni = new javax.swing.JTable();
         lblNome = new javax.swing.JLabel();
         lblCognome = new javax.swing.JLabel();
         lblClasse = new javax.swing.JLabel();
+        btnEliminaIscrizione = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Vedi iscrizioni");
 
         pnlVediIscrizione.setBackground(new java.awt.Color(153, 204, 255));
 
         lblVediIscrizione.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 18)); // NOI18N
-        lblVediIscrizione.setText("Vedi Iscrizione");
+        lblVediIscrizione.setText("Vedi Iscrizioni");
 
         javax.swing.GroupLayout pnlVediIscrizioneLayout = new javax.swing.GroupLayout(pnlVediIscrizione);
         pnlVediIscrizione.setLayout(pnlVediIscrizioneLayout);
@@ -75,19 +81,16 @@ public class FrmVediIscrizioni extends javax.swing.JFrame {
         lblIscrizioneClasse.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
         lblIscrizioneClasse.setText("Classe:");
 
-        tblVediIscrizione.setModel(new javax.swing.table.DefaultTableModel(
+        tblVediIscrizioni.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "ID", "Destinazione", "Durata", "Prezzo"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false
@@ -101,32 +104,41 @@ public class FrmVediIscrizioni extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tblVediIscrizione);
+        jScrollPane1.setViewportView(tblVediIscrizioni);
+
+        btnEliminaIscrizione.setText("Elimina iscrizione");
+        btnEliminaIscrizione.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminaIscrizioneActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlSfondoLayout = new javax.swing.GroupLayout(pnlSfondo);
         pnlSfondo.setLayout(pnlSfondoLayout);
         pnlSfondoLayout.setHorizontalGroup(
             pnlSfondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlSfondoLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(pnlSfondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(pnlSfondoLayout.createSequentialGroup()
-                        .addComponent(lblIscrizioneNome)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblNome, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(24, 24, 24)
-                        .addComponent(lblIscrizioneCognome)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblCognome, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(24, 24, 24)
-                        .addComponent(lblIscrizioneClasse)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblClasse, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(pnlSfondoLayout.createSequentialGroup()
                 .addComponent(pnlVediIscrizione, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(pnlSfondoLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(pnlSfondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnEliminaIscrizione, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(pnlSfondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(pnlSfondoLayout.createSequentialGroup()
+                            .addComponent(lblIscrizioneNome)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(lblNome, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(24, 24, 24)
+                            .addComponent(lblIscrizioneCognome)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(lblCognome, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(lblIscrizioneClasse)
+                            .addGap(18, 18, 18)
+                            .addComponent(lblClasse, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlSfondoLayout.setVerticalGroup(
             pnlSfondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -142,7 +154,9 @@ public class FrmVediIscrizioni extends javax.swing.JFrame {
                     .addComponent(lblNome, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnEliminaIscrizione)
+                .addGap(15, 15, 15))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -161,11 +175,34 @@ public class FrmVediIscrizioni extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void configuraLabel(){
+    private void btnEliminaIscrizioneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminaIscrizioneActionPerformed
+        int rigaSelezionata = tblVediIscrizioni.getSelectedRow();
+        if(rigaSelezionata == -1){
+            JOptionPane.showMessageDialog(this, "Seleziona una gita", "Errore", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        Integer idGita = (Integer)tblVediIscrizioni.getValueAt(rigaSelezionata, 0);
+        s.rimuoviGita(idGita);
+        GestioneDatabase.rimuoviPartecipazione(s.getMatricola(), idGita);
+        DefaultTableModel modello = (DefaultTableModel)tblVediIscrizioni.getModel();
+        modello.removeRow(rigaSelezionata);
+    }//GEN-LAST:event_btnEliminaIscrizioneActionPerformed
+
+    private void configuraLabel(){
         lblNome.setText(s.getNome());
         lblCognome.setText(s.getCognome());
         lblClasse.setText(s.getClasse().toString());
     }
+    
+    private void configuraTabella(){
+        DefaultTableModel modello = (DefaultTableModel)tblVediIscrizioni.getModel();
+        for(int id : s.getIdGita()){
+            Gita g = GestioneGite.cercaPerId(id);
+            modello.addRow(new Object[]{g.getId(), g.getDestinazione(), g.getDurata(), g.getPrezzo()});
+        }
+    }
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -189,6 +226,7 @@ public class FrmVediIscrizioni extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnEliminaIscrizione;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblClasse;
     private javax.swing.JLabel lblCognome;
@@ -199,6 +237,6 @@ public class FrmVediIscrizioni extends javax.swing.JFrame {
     private javax.swing.JLabel lblVediIscrizione;
     private javax.swing.JPanel pnlSfondo;
     private javax.swing.JPanel pnlVediIscrizione;
-    private javax.swing.JTable tblVediIscrizione;
+    private javax.swing.JTable tblVediIscrizioni;
     // End of variables declaration//GEN-END:variables
 }

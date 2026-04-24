@@ -11,12 +11,15 @@ package aurelimartinellipichiugestionegite;
 public class FrmIscriviStudente extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmIscriviStudente.class.getName());
-
+    private Studente s;
     /**
      * Creates new form FrmIscriviStudente
      */
-    public FrmIscriviStudente() {
+    public FrmIscriviStudente(Studente s) {
         initComponents();
+        this.s = s;
+        configuraComboBox();
+        configuraLabel();
     }
 
     /**
@@ -31,17 +34,18 @@ public class FrmIscriviStudente extends javax.swing.JFrame {
         pnlSfondo = new javax.swing.JPanel();
         pnlIscriviStudente = new javax.swing.JPanel();
         lblIscriviStudente = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        lblPerNome = new javax.swing.JLabel();
+        lblPerCognome = new javax.swing.JLabel();
+        lblPerClasse = new javax.swing.JLabel();
         lblNome = new javax.swing.JLabel();
         lblCognome = new javax.swing.JLabel();
         lblClasse = new javax.swing.JLabel();
         lblGita = new javax.swing.JLabel();
-        txtGita = new javax.swing.JTextField();
         btnIscrivi = new javax.swing.JButton();
+        cmbGite = new javax.swing.JComboBox<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Iscrizione studente");
 
         pnlIscriviStudente.setBackground(new java.awt.Color(153, 204, 255));
 
@@ -55,7 +59,7 @@ public class FrmIscriviStudente extends javax.swing.JFrame {
             .addGroup(pnlIscriviStudenteLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(lblIscriviStudente)
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addContainerGap(161, Short.MAX_VALUE))
         );
         pnlIscriviStudenteLayout.setVerticalGroup(
             pnlIscriviStudenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -65,15 +69,20 @@ public class FrmIscriviStudente extends javax.swing.JFrame {
                 .addGap(19, 19, 19))
         );
 
-        jLabel2.setText("Nome:");
+        lblPerNome.setText("Nome:");
 
-        jLabel3.setText("Cognome:");
+        lblPerCognome.setText("Cognome:");
 
-        jLabel4.setText("Classe:");
+        lblPerClasse.setText("Classe:");
 
         lblGita.setText("Gita");
 
         btnIscrivi.setText("Iscrivi");
+        btnIscrivi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIscriviActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlSfondoLayout = new javax.swing.GroupLayout(pnlSfondo);
         pnlSfondo.setLayout(pnlSfondoLayout);
@@ -81,27 +90,31 @@ public class FrmIscriviStudente extends javax.swing.JFrame {
             pnlSfondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(pnlIscriviStudente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(pnlSfondoLayout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(lblGita)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtGita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(pnlSfondoLayout.createSequentialGroup()
                 .addGap(13, 13, 13)
                 .addGroup(pnlSfondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlSfondoLayout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(18, 18, 18)
-                        .addComponent(lblClasse, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(pnlSfondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlSfondoLayout.createSequentialGroup()
+                                .addComponent(lblPerCognome)
+                                .addGap(18, 18, 18)
+                                .addComponent(lblCognome, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(pnlSfondoLayout.createSequentialGroup()
+                                .addComponent(lblPerNome)
+                                .addGap(18, 18, 18)
+                                .addComponent(lblNome, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 156, Short.MAX_VALUE))
                     .addGroup(pnlSfondoLayout.createSequentialGroup()
-                        .addComponent(jLabel3)
+                        .addGroup(pnlSfondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblPerClasse)
+                            .addGroup(pnlSfondoLayout.createSequentialGroup()
+                                .addGap(4, 4, 4)
+                                .addComponent(lblGita)))
                         .addGap(18, 18, 18)
-                        .addComponent(lblCognome, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlSfondoLayout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
-                        .addComponent(lblNome, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addGroup(pnlSfondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblClasse, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(pnlSfondoLayout.createSequentialGroup()
+                                .addComponent(cmbGite, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(16, 16, 16))))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlSfondoLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnIscrivi)
@@ -113,20 +126,20 @@ public class FrmIscriviStudente extends javax.swing.JFrame {
                 .addComponent(pnlIscriviStudente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(pnlSfondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblPerNome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblNome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(pnlSfondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
+                    .addComponent(lblPerCognome)
                     .addComponent(lblCognome, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(pnlSfondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
+                    .addComponent(lblPerClasse)
                     .addComponent(lblClasse, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addGroup(pnlSfondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtGita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblGita))
+                    .addComponent(lblGita)
+                    .addComponent(cmbGite, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btnIscrivi)
                 .addGap(18, 18, 18))
@@ -146,6 +159,27 @@ public class FrmIscriviStudente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnIscriviActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIscriviActionPerformed
+        Gita g = (Gita)cmbGite.getSelectedItem();
+        s.iscrivi(g);
+        GestioneDatabase.inserisciPartecipazione(s.getMatricola(), g.getId());
+    }//GEN-LAST:event_btnIscriviActionPerformed
+
+    /**
+     * Metodo per inserire tutte le gite sulla combobox
+     */
+    private void configuraComboBox(){
+        for (Gita g : GestioneGite.getListaGite()) {
+            if(!s.controlloIdGita(g.getId())) cmbGite.addItem(g);
+        }
+    }
+    
+    private void configuraLabel(){
+        lblNome.setText(s.getNome());
+        lblCognome.setText(s.getCognome());
+        lblClasse.setText(s.getClasse().toString());
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -167,22 +201,21 @@ public class FrmIscriviStudente extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new FrmIscriviStudente().setVisible(true));
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIscrivi;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JComboBox<Gita> cmbGite;
     private javax.swing.JLabel lblClasse;
     private javax.swing.JLabel lblCognome;
     private javax.swing.JLabel lblGita;
     private javax.swing.JLabel lblIscriviStudente;
     private javax.swing.JLabel lblNome;
+    private javax.swing.JLabel lblPerClasse;
+    private javax.swing.JLabel lblPerCognome;
+    private javax.swing.JLabel lblPerNome;
     private javax.swing.JPanel pnlIscriviStudente;
     private javax.swing.JPanel pnlSfondo;
-    private javax.swing.JTextField txtGita;
     // End of variables declaration//GEN-END:variables
 }

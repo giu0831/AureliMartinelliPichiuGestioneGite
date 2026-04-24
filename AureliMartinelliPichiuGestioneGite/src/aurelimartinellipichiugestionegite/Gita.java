@@ -46,6 +46,13 @@ public class Gita {
     public int getId() {
         return id;
     }
+
+    @Override
+    public String toString() {
+        return destinazione + ", " + durata + " giorni, " + prezzo + " euro, id:" + id ;
+    }
+    
+    
     
     
 }

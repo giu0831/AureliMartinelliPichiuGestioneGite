@@ -46,4 +46,16 @@ public class GestioneGite {
         }
         return false; // Gita non trovata
     }
+    
+    /**
+     * Metod per cercare una gita in base al'id
+     * @param idGita
+     * @return 
+     */
+    public static Gita cercaPerId(int idGita){
+        for(Gita g : listaGite){
+            if(idGita == g.getId()) return g;
+        }
+        return null;
+    }
 }

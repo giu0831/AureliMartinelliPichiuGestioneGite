@@ -174,6 +174,9 @@ public class FrmStudente extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Metodo per inserire btutte le classi sulla combobox
+     */
     public void configuraComboBox(){
         for (Classe c : GestioneDatabase.getListaClassi()) {
             cmbClasse.addItem(c);
