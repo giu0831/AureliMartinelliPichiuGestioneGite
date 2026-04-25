@@ -14,10 +14,8 @@ public class AureliMartinelliPichiuGestioneGite {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        GestioneDatabase.creaTabellaClassi();
-        GestioneDatabase.creaTabellaGite();
-        GestioneDatabase.creaTabellaStudenti();
-        GestioneDatabase.creaTabellaPartecipazioni();
+        //creazione database
+        GestioneDatabase.inizializza();
         //carica tutte le classi dal database
         for (Classe c : GestioneDatabase.getListaClassi()) {
             GestioneClassi.aggiungiClasse(c);
@@ -31,6 +29,7 @@ public class AureliMartinelliPichiuGestioneGite {
             GestioneStudenti.aggiungiStudente(s);
             s.setIdGita(GestioneDatabase.getGiteStudente(s.getMatricola()));
         }
+        //apertura form
         java.awt.EventQueue.invokeLater(() -> new FrmGestioneGite().setVisible(true));
     }
     

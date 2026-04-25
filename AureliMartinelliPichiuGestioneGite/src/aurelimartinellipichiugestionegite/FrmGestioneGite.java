@@ -19,9 +19,11 @@ public class FrmGestioneGite extends javax.swing.JFrame {
     /** Creates new form FrmPartecipazione */
     public FrmGestioneGite() {
         initComponents();
+        //caricamento tabelle
         aggiornaTabellaClassi();
         aggiornaTabellaGite();
         aggiornaTabellaStudenti();
+        //configurazione tabelle
         srpClassi.setVisible(false);
         srpGite.setVisible(false);
     }
@@ -206,6 +208,7 @@ public class FrmGestioneGite extends javax.swing.JFrame {
     private void btnAggiungiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAggiungiActionPerformed
         String tabellaSelezionata = cmbTabelle.getSelectedItem().toString();
         if (tabellaSelezionata.equals("Studenti")) {
+            //controllo per vedere se e' presente almeno una classe
             if(GestioneClassi.getListaClassi().size() == 0){
                 JOptionPane.showMessageDialog(this, "Devi creare una classe prima di creare uno studente", "Attenzione", JOptionPane.WARNING_MESSAGE);
                 return;
@@ -234,6 +237,7 @@ public class FrmGestioneGite extends javax.swing.JFrame {
         srpGite.setVisible(false);
         srpClassi.setVisible(false);
         srpStudenti.setVisible(false);
+        //rende visibile la tabella che si vuole vedere
         if (oggettoSelezionato.equals("Studenti")) {
             srpStudenti.setVisible(true);
         } else if (oggettoSelezionato.equals("Classi")) {
@@ -245,31 +249,56 @@ public class FrmGestioneGite extends javax.swing.JFrame {
 
     private void btnEliminaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminaActionPerformed
         String tabellaSelezionata = cmbTabelle.getSelectedItem().toString();
+        //controllo per vedere cosa si vuole eliminare
         if (tabellaSelezionata.equals("Studenti")) {
-            //codice eliminazione
+            eliminazioneStudente();
         } else if (tabellaSelezionata.equals("Classi")) {
-
+            eliminazioneClasse();
         } else if (tabellaSelezionata.equals("Gite")) {
-            
+            eliminazioneGita();
         }
     }//GEN-LAST:event_btnEliminaActionPerformed
 
     private void btnIscriviActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIscriviActionPerformed
         int matricola = getMatricolaStudenteSelezionato();
+        Studente s = GestioneStudenti.cercaPerMatricola(matricola);
+        //cotrollo selezione studente
         if(matricola == -1){
             JOptionPane.showMessageDialog(this, "Devi selezionare uno studente da iscrivere", "Attenzione", JOptionPane.WARNING_MESSAGE);
             return;
         }
-        Studente s = GestioneStudenti.cercaPerMatricola(matricola);
+        //controllo per vedere se lo studente e' gia' iscritto a tutte le gite
+        else if(controlloIscrizioni(s)){
+            JOptionPane.showMessageDialog(this, "Questo studente e' gia' iscritto a tutte le gite create", "errore", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        //apertura form per iscrizione alle gite
         FrmIscriviStudente frmIscriviStudente = new FrmIscriviStudente(s);
         frmIscriviStudente.setVisible(true);
     }//GEN-LAST:event_btnIscriviActionPerformed
 
     private void btnVediIscrizioniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVediIscrizioniActionPerformed
+        //controllo selezione studente
+        if(tblStudenti.getSelectedRow() == -1){
+            JOptionPane.showMessageDialog(this, "Seleziona lo studente di cui vuoi vedere le iscrizioni", "Attenzione", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        //apertura form per vedere le iscrizioni di uno studente
         FrmVediIscrizioni frmVediIscrizioni = new FrmVediIscrizioni(GestioneStudenti.cercaPerMatricola(getMatricolaStudenteSelezionato()));
         frmVediIscrizioni.setVisible(true);
     }//GEN-LAST:event_btnVediIscrizioniActionPerformed
 
+    /**
+     * Metodo per controllare se uno studente e' iscritto a tutte le gite
+     * @param s studente
+     * @return true se e' iscritto a tutte le gite, false altrimenti
+     */
+    private boolean controlloIscrizioni(Studente s){
+        for(Gita g : GestioneGite.getListaGite()){
+            if(!s.getIdGita().contains(g.getId())) return false;
+        }
+        return true;
+    }
     /**
      * Metodo per aggiornare la tabella con le classi
      */
@@ -322,6 +351,74 @@ public class FrmGestioneGite extends javax.swing.JFrame {
         return -1;
     }
 
+    /**
+     * Metodo per eliminare una classe
+     */
+    public void eliminazioneClasse() {
+        //controllo selezione classe
+        if(tblClassi.getSelectedRow() == -1){
+            JOptionPane.showMessageDialog(this, "Seleziona la classe che vuoi eliminare", "Attenzione", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        //controllo per vedere se e' rimasta solo una classe
+        else if (GestioneClassi.getListaClassi().size() == 1) {
+            JOptionPane.showMessageDialog(this, "Non puoi eliminare tutte le classi", "Attenzione", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        int id = (Integer) tblClassi.getValueAt(tblClassi.getSelectedRow(), 0);
+        Classe c = GestioneClassi.cercaClassePerId(id);
+        DefaultTableModel modello = (DefaultTableModel) tblClassi.getModel();
+        //controllo per vedere se ci sono studenti appartenenti alla classe selezionata
+        if (GestioneStudenti.cercaStudentiPerClasse(c).isEmpty()) {
+            //eliminazione classe
+            GestioneClassi.rimuoviClasse(id);
+            GestioneDatabase.rimuoviClasse(id);
+            modello.removeRow(tblClassi.getSelectedRow());
+        } else {
+            //apertura form per riassegnare la classe
+            JOptionPane.showMessageDialog(this, "Prima di eliminare il " + c + " devi riassegnare le classi agli studenti di questa classe", "Attenzione", JOptionPane.WARNING_MESSAGE);
+            FrmCambiaClasse frmCambiaClasse = new FrmCambiaClasse(c, (DefaultTableModel) tblStudenti.getModel(), modello);
+            frmCambiaClasse.setVisible(true);
+        }
+    }
+    
+    /**
+     * Metodo per eliminare uno studente
+     */
+    public void eliminazioneStudente(){
+        //controllo selezione studente
+        if(tblStudenti.getSelectedRow() == -1){
+            JOptionPane.showMessageDialog(this, "Seleziona lo studente che vuoi eliminare", "Attenzione", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        //eliminazione studente
+        int matricola = getMatricolaStudenteSelezionato();
+        DefaultTableModel modello = (DefaultTableModel)tblStudenti.getModel();
+        modello.removeRow(tblStudenti.getSelectedRow());
+        GestioneStudenti.rimuoviStudente(matricola);
+        GestioneDatabase.rimuoviPartecipazioniPerStudente(matricola);
+        GestioneDatabase.rimuoviStudente(matricola);
+    }
+    
+    /**
+     * Metodo per eliminare una gita
+     */
+    public void eliminazioneGita(){
+        //conrollo selezione gita
+        int rigaSelezionata = tblGite.getSelectedRow();
+        if(rigaSelezionata == -1){
+            JOptionPane.showMessageDialog(this, "Seleziona la gita che vuoi eliminare", "Attenzione", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        //eliminazione gita
+        int id = (Integer)tblGite.getValueAt(rigaSelezionata, 0);
+        DefaultTableModel modello = (DefaultTableModel)tblGite.getModel();
+        modello.removeRow(tblGite.getSelectedRow());
+        GestioneGite.rimuoviGita(id);
+        GestioneDatabase.rimuoviPartecipazioniPerGita(id);
+        GestioneDatabase.rimuoviGita(id);
+    }
+    
     /**
      * @param args the command line arguments
      */

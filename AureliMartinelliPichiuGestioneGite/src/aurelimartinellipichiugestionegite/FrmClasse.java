@@ -14,7 +14,7 @@ import javax.swing.table.DefaultTableModel;
 public class FrmClasse extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmClasse.class.getName());
-    private DefaultTableModel model;
+    private DefaultTableModel model; //riferimento alla tabella di classi sul form principale
     /**
      * Creates new form FrmClasse
      */
@@ -154,14 +154,17 @@ public class FrmClasse extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCreaClasseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreaClasseActionPerformed
+        //controllo inserimento dati
         if(controlloTextBox()){
             JOptionPane.showMessageDialog(this, "Compila tutti i campi", "Errore", JOptionPane.ERROR_MESSAGE);
             return;
         }
+        //creazione classe
         int anno = Integer.valueOf(txtAnno.getText());
         Classe c = new Classe(anno, txtSezione.getText(), txtIndirizzo.getText());
         c.setId(GestioneDatabase.inserisciClasse(anno, c.getSezione(), c.getIndirizzo()));
         GestioneClassi.aggiungiClasse(c);
+        //aggiornamento tabella
         aggiornaTabella();
         System.out.println("Classe aggiunta");
     }//GEN-LAST:event_btnCreaClasseActionPerformed

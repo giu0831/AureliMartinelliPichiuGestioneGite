@@ -49,8 +49,8 @@ public class GestioneGite {
     
     /**
      * Metod per cercare una gita in base al'id
-     * @param idGita
-     * @return 
+     * @param idGita id da cercare
+     * @return gita con l'id passato, o null se non e' stata trovata
      */
     public static Gita cercaPerId(int idGita){
         for(Gita g : listaGite){

@@ -8,12 +8,10 @@ import java.util.ArrayList;
  */
 public class GestioneDatabase {
    
-    // Resa statica per poter essere usata dai metodi statici
     private static final String url = "jdbc:sqlite:gestione_gite.db?foreign_keys=on";
 
     /**
-     * Metodo di inizializzazione (sostituisce il costruttore).
-     * Chiamalo all'avvio dell'applicazione con GestioneDatabase.inizializza();
+     * Metodo di inizializzazione
      */
     public static void inizializza() {
         // creazione delle tabelle
@@ -56,7 +54,7 @@ public class GestioneDatabase {
         String sql = "CREATE TABLE IF NOT EXISTS gite (\n"  
            + " git_id INTEGER PRIMARY KEY AUTOINCREMENT,\n"  
            + " git_destinazione TEXT NOT NULL,\n"  
-           + " git_durata INTEGER NOT NULL,\n"          // MODIFICATO: ora è INTEGER  
+           + " git_durata INTEGER NOT NULL,\n"          
            + " git_prezzo INTEGER NOT NULL\n"       
            + ");";
 
@@ -128,9 +126,9 @@ public class GestioneDatabase {
    
     /**
      * Inserisce una nuova classe nel database
-     * @param anno Es: 3, 4, 5
-     * @param sezione Es: "A", "B"
-     * @param indirizzo Es: "Informatica", "Linguistico"
+     * @param anno anno della classe
+     * @param sezione sezione della classe
+     * @param indirizzo indirizzo della classe
      * @return L'ID generato per la classe, oppure -1 in caso di errore
      */
     public static int inserisciClasse(int anno, String sezione, String indirizzo) {
@@ -161,19 +159,19 @@ public class GestioneDatabase {
 
     /**
      * Inserisce una nuova gita
-     * @param destinazione Es: "Roma", "Parigi"
-     * @param durata Es: 3, 1 (in giorni)
-     * @param prezzo Prezzo in euro
+     * @param destinazione destinazione della gita
+     * @param durata durata della gita
+     * @param prezzo Prezzo della gita
      * @return L'ID generato per la gita, oppure -1 in caso di errore
      */
-    public static int inserisciGita(String destinazione, int durata, int prezzo) { // MODIFICATO: durata è int
+    public static int inserisciGita(String destinazione, int durata, int prezzo) { 
         String sql = "INSERT INTO gite (git_destinazione, git_durata, git_prezzo) VALUES (?, ?, ?)";
 
         try (Connection conn = DriverManager.getConnection(url);
              PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             pstmt.setString(1, destinazione);
-            pstmt.setInt(2, durata); // MODIFICATO: setInt
+            pstmt.setInt(2, durata); 
             pstmt.setInt(3, prezzo);
 
             pstmt.executeUpdate();
@@ -194,8 +192,8 @@ public class GestioneDatabase {
 
     /**
      * Inserisce uno studente associandolo a una classe esistente
-     * @param nome Nome studente
-     * @param cognome Cognome studente
+     * @param nome Nome dello studente
+     * @param cognome Cognome dello studente
      * @param idClasse L'ID (cla_id) della classe a cui appartiene
      * @return L'ID generato per lo studente, oppure -1 in caso di errore
      */
@@ -246,16 +244,14 @@ public class GestioneDatabase {
 
         } catch (SQLException e) {
             System.out.println("Errore inserimento partecipazione: " + e.getMessage());
-            // Nota: fallirà se lo studente o la gita non esistono (grazie ai Foreign Keys)
-            // o se lo studente è già iscritto a quella gita (grazie alla Primary Key composta)
             return false;
         }
     }
    
     /**
      * Metodo per rimuovere uno studente
-     * @param idStudente
-     * @return 
+     * @param idStudente id dello studente da eliminare
+     * @return true se e' stato rimosso, false altrimenti
      */
     public static boolean rimuoviStudente(int idStudente) {
         String sql = "DELETE FROM studenti WHERE stu_id = ?";
@@ -277,8 +273,8 @@ public class GestioneDatabase {
 
     /**
      * Metodo per rimuovere una gita
-     * @param idGita
-     * @return 
+     * @param idGita id della gita da eliminare
+     * @return true se e' stata eliminata, false altrimenti
      */
     public static boolean rimuoviGita(int idGita) {
         String sql = "DELETE FROM gite WHERE git_id = ?";
@@ -300,8 +296,8 @@ public class GestioneDatabase {
 
     /**
      * Metodo per rimuovere una classe
-     * @param idClasse
-     * @return 
+     * @param idClasse id della classe da eliminare
+     * @return true se e' stata eliminata, false altrimenti
      */
     public static boolean rimuoviClasse(int idClasse) {
         String sql = "DELETE FROM classi WHERE cla_id = ?";
@@ -323,9 +319,9 @@ public class GestioneDatabase {
 
     /**
      * Metodo per rimuovere una partecipazione
-     * @param idStudente
-     * @param idGita
-     * @return 
+     * @param idStudente id dello studente
+     * @param idGita id della gita
+     * @return true se e' staat eliminata, false altrimenti
      */
     public static boolean rimuoviPartecipazione(int idStudente, int idGita) {
         String sql = "DELETE FROM partecipazioni WHERE par_stu_id = ? AND par_git_id = ?";
@@ -358,7 +354,6 @@ public class GestioneDatabase {
              ResultSet rs = stmt.executeQuery(sql)) {
 
             while (rs.next()) {
-                // Passo direttamente rs.getInt() perché ora 'anno' è un int
                 Classe c = new Classe(
                     rs.getInt("cla_id"),
                     rs.getInt("cla_anno"),
@@ -375,8 +370,7 @@ public class GestioneDatabase {
     }
 
     /**
-     * Restituisce la lista di tutti gli studenti, creando per ognuno 
-     * il rispettivo oggetto Classe al suo interno
+     * Restituisce la lista di tutti gli studenti
      */
     public static ArrayList<Studente> getListaStudenti() {
         ArrayList<Studente> lista = new ArrayList<>();
@@ -390,7 +384,7 @@ public class GestioneDatabase {
              ResultSet rs = stmt.executeQuery(sql)) {
 
             while (rs.next()) {
-                // Creo la Classe passando l'int per l'anno e assicurandomi di passare l'id
+                // Creazione classe 
                 Classe classeDelloStudente = new Classe(
                     rs.getInt("cla_id"),
                     rs.getInt("cla_anno"), 
@@ -399,6 +393,7 @@ public class GestioneDatabase {
                     
                 );
                 
+                //creazione studente
                 Studente s = new Studente(
                     rs.getInt("stu_id"),
                     rs.getString("stu_nome"),
@@ -425,7 +420,7 @@ public class GestioneDatabase {
              ResultSet rs = stmt.executeQuery(sql)) {
 
             while (rs.next()) {
-                // Crea l'oggetto Gita usando i dati dal database
+                // Creazione gita
                 Gita g = new Gita(
                     rs.getInt("git_id"),
                     rs.getString("git_destinazione"),
@@ -471,46 +466,74 @@ public class GestioneDatabase {
         return lista;
     }
     
+
     /**
-     * Restituisce la lista degli studenti iscritti a una specifica gita
-     * @param idGita
-     * @return 
+     * Cambia la classe di uno studente
+     * @param idStudente id dello studente
+     * @param idNuovaClasse id della nuova classe
+     * @return true se e' stata cambiata, false altrimenti
      */
-    public static ArrayList<Studente> getPartecipantiGita(int idGita) {
-        ArrayList<Studente> lista = new ArrayList<>();
-        String sql = "SELECT s.stu_id, s.stu_nome, s.stu_cognome, " +
-                     "c.cla_id, c.cla_anno, c.cla_sezione, c.cla_indirizzo " + // Aggiunto c.cla_id per sicurezza
-                     "FROM partecipazioni p " +
-                     "JOIN studenti s ON p.par_stu_id = s.stu_id " +
-                     "JOIN classi c ON s.stu_cla_id = c.cla_id " +
-                     "WHERE p.par_git_id = ?";
+    public static boolean aggiornaClasseStudente(int idStudente, int idNuovaClasse) {
+        String sql = "UPDATE studenti SET stu_cla_id = ? WHERE stu_id = ?";
 
-        try (Connection conn = DriverManager.getConnection(url);
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        try (Connection conn = DriverManager.getConnection(url); PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-            pstmt.setInt(1, idGita);
-            ResultSet rs = pstmt.executeQuery();
+            pstmt.setInt(1, idNuovaClasse); // Il nuovo ID della classe
+            pstmt.setInt(2, idStudente);    // L'ID dello studente da spostare
 
-            while (rs.next()) {
-                // Creo la Classe passando l'int per l'anno
-                Classe classeDelloStudente = new Classe(
-                    rs.getInt("cla_id"),
-                    rs.getInt("cla_anno"), 
-                    rs.getString("cla_sezione"), 
-                    rs.getString("cla_indirizzo")
-                );
-                
-                Studente s = new Studente(
-                    rs.getInt("stu_id"),
-                    rs.getString("stu_nome"),
-                    rs.getString("stu_cognome"),
-                    classeDelloStudente
-                );
-                lista.add(s);
-            }
+            int righeModificate = pstmt.executeUpdate();
+            return righeModificate > 0; // Se è maggiore di 0, ha funzionato
+
         } catch (SQLException e) {
-            System.out.println("Errore caricamento partecipanti: " + e.getMessage());
+            System.out.println("Errore nell'aggiornamento dello studente: " + e.getMessage());
+            return false;
         }
-        return lista;
     }
+    
+    /**
+     * Metodo per rimuovere tutte le partecipazioni associate a uno specifico studente
+     * @param idStudente L'ID (stu_id) dello studente
+     * @return true se l'operazione va a buon fine, false altrimenti
+     */
+    public static boolean rimuoviPartecipazioniPerStudente(int idStudente) {
+        String sql = "DELETE FROM partecipazioni WHERE par_stu_id = ?";
+        
+        try (Connection conn = DriverManager.getConnection(url); 
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            
+            pstmt.setInt(1, idStudente);
+            int righeModificate = pstmt.executeUpdate();
+            
+            System.out.println("Rimosse " + righeModificate + " partecipazioni per lo studente con ID: " + idStudente);
+            return true; 
+            
+        } catch (SQLException e) {
+            System.out.println("Errore rimozione partecipazioni dello studente: " + e.getMessage());
+            return false;
+        }
+    }
+
+    /**
+     * Metodo per rimuovere tutte le partecipazioni associate a una specifica gita
+     * @param idGita L'ID (git_id) della gita
+     * @return true se l'operazione va a buon fine, false altrimenti
+     */
+    public static boolean rimuoviPartecipazioniPerGita(int idGita) {
+        String sql = "DELETE FROM partecipazioni WHERE par_git_id = ?";
+        
+        try (Connection conn = DriverManager.getConnection(url); 
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            
+            pstmt.setInt(1, idGita);
+            int righeModificate = pstmt.executeUpdate();
+            
+            System.out.println("Rimosse " + righeModificate + " partecipazioni per la gita con ID: " + idGita);
+            return true;
+            
+        } catch (SQLException e) {
+            System.out.println("Errore rimozione partecipazioni della gita: " + e.getMessage());
+            return false;
+        }
+    }
+
 }

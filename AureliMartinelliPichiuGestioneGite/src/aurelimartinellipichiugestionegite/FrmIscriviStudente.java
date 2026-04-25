@@ -4,6 +4,8 @@
  */
 package aurelimartinellipichiugestionegite;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author martinelli.alessandr
@@ -11,13 +13,14 @@ package aurelimartinellipichiugestionegite;
 public class FrmIscriviStudente extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmIscriviStudente.class.getName());
-    private Studente s;
+    private Studente s; //studente che si vuole iscrivere
     /**
      * Creates new form FrmIscriviStudente
      */
     public FrmIscriviStudente(Studente s) {
         initComponents();
         this.s = s;
+        //configurazione componenti
         configuraComboBox();
         configuraLabel();
     }
@@ -111,10 +114,12 @@ public class FrmIscriviStudente extends javax.swing.JFrame {
                                 .addComponent(lblGita)))
                         .addGap(18, 18, 18)
                         .addGroup(pnlSfondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblClasse, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(pnlSfondoLayout.createSequentialGroup()
                                 .addComponent(cmbGite, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(16, 16, 16))))))
+                                .addGap(16, 16, 16))
+                            .addGroup(pnlSfondoLayout.createSequentialGroup()
+                                .addComponent(lblClasse, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlSfondoLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnIscrivi)
@@ -160,9 +165,18 @@ public class FrmIscriviStudente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIscriviActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIscriviActionPerformed
+        //iscrizione studente alla gita scelta
         Gita g = (Gita)cmbGite.getSelectedItem();
         s.iscrivi(g);
         GestioneDatabase.inserisciPartecipazione(s.getMatricola(), g.getId());
+        //rimozione gita dalla combobox
+        cmbGite.removeItem(g);
+        //controllo per vedere se resta almeno una gita
+        if(cmbGite.getItemCount() == 0){
+            //chiusura form
+            JOptionPane.showMessageDialog(this, "Lo studente e' iscritto a tutte le gite disponibili.", "Attenzione", JOptionPane.WARNING_MESSAGE);
+            this.dispose();
+        }
     }//GEN-LAST:event_btnIscriviActionPerformed
 
     /**
@@ -174,6 +188,9 @@ public class FrmIscriviStudente extends javax.swing.JFrame {
         }
     }
     
+    /**
+     * Metodo per configurare le label
+     */
     private void configuraLabel(){
         lblNome.setText(s.getNome());
         lblCognome.setText(s.getCognome());

@@ -47,4 +47,16 @@ public class GestioneClassi {
         }
         return false; // Classe non trovata
     }
+    
+    /**
+     * Metodo per cercare una classe in base all'id
+     * @param id id della classe
+     * @return classe con l'id passato, null se non trovata
+     */
+    public static Classe cercaClassePerId(int id){
+        for (Classe c : listaClassi) {
+            if(c.getId() == id)return c;
+        }
+        return null;
+    }
 }

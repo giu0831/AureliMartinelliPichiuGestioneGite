@@ -14,13 +14,14 @@ import javax.swing.table.DefaultTableModel;
 public class FrmStudente extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmStudente.class.getName());
-    private DefaultTableModel model;
+    private DefaultTableModel model; //riferimento alla tabella di studenti dle form principale
     /**
      * Creates new form FrmStudente
      */
     public FrmStudente(DefaultTableModel model) {
         initComponents();
         this.model = model;
+        //configurazione combobox
         configuraComboBox();
     }
 
@@ -144,15 +145,18 @@ public class FrmStudente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCreaStudenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreaStudenteActionPerformed
+        //controllo inserimento dati
         if(controlloTextBox()){
             JOptionPane.showMessageDialog(this, "Inserisci tutti i dati", "Errore", JOptionPane.ERROR_MESSAGE);
             return;
         }
+        //creazione studente
         String nome = txtNome.getText(), cognome = txtCognome.getText();
         Classe classe = (Classe)cmbClasse.getSelectedItem();
         Studente s = new Studente(nome, cognome, classe);
         s.setMatricola(GestioneDatabase.inserisciStudente(nome, cognome, classe.getId()));
         GestioneStudenti.aggiungiStudente(s);
+        //aggiornamento tabella
         aggiornaTabella();
     }//GEN-LAST:event_btnCreaStudenteActionPerformed
 

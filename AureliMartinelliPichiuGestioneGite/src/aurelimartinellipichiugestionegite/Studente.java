@@ -7,7 +7,7 @@ package aurelimartinellipichiugestionegite;
 import java.util.ArrayList;
 
 /**
- *
+ * Classe studente
  * @author aureli.giulia
  */
 public class Studente {
@@ -17,6 +17,13 @@ public class Studente {
     private Classe classe;
     private ArrayList<Integer> idGita;
 
+    /**
+     * Metodo costruttore
+     * @param matricola matricola dello studente
+     * @param nome nome dello studente
+     * @param cognome cognome dello studente
+     * @param classe classe dello studente
+     */
     public Studente(int matricola, String nome, String cognome, Classe classe) {
         this.matricola = matricola;
         this.nome = nome;
@@ -26,6 +33,12 @@ public class Studente {
         
     }
 
+    /**
+     * Metodo costruttore
+     * @param nome nome dello studente
+     * @param cognome cognome dello studente
+     * @param classe classe dello studente
+     */
     public Studente(String nome, String cognome, Classe classe) {
         this.nome = nome;
         this.cognome = cognome;
@@ -34,37 +47,52 @@ public class Studente {
         idGita = new ArrayList<>();
     }
     
-
+    /**
+     * Metodo get
+     * @return matricola dello studente
+     */
     public int getMatricola() {
         return matricola;
     }
 
+    /**
+     * Metodo get
+     * @return nome dello studente
+     */
     public String getNome() {
         return nome;
     }
 
+    /**
+     * Metodo get
+     * @return cognome dello studente
+     */
     public String getCognome() {
         return cognome;
     }
 
+    /**
+     * Metodo get
+     * @return classe dello studente
+     */
     public Classe getClasse() {
         return classe;
     }
 
     /**
-     * Metodo set
-     * @param matricola 
-     */
-    public void setMatricola(int matricola) {
-        this.matricola = matricola;
-    }
-
-    /**
      * Metodo get
-     * @return 
+     * @return lista di gite a cui partecipa
      */
     public ArrayList<Integer> getIdGita() {
         return idGita;
+    }
+    
+    /**
+     * Metodo set
+     * @param matricola matricola dello studente
+     */
+    public void setMatricola(int matricola) {
+        this.matricola = matricola;
     }
 
     /**
@@ -74,6 +102,15 @@ public class Studente {
     public void setIdGita(ArrayList<Integer> idGita) {
         this.idGita = idGita;
     }
+
+    /**
+     * Metodo set
+     * @param classe 
+     */
+    public void setClasse(Classe classe) {
+        this.classe = classe;
+    }
+    
     
 
     /**

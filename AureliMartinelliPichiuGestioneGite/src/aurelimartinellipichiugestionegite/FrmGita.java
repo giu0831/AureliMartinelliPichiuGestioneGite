@@ -14,7 +14,7 @@ import javax.swing.table.DefaultTableModel;
 public class FrmGita extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmGita.class.getName());
-    private DefaultTableModel model;
+    private DefaultTableModel model; //riferimento alla tabella delle gite sul form principale
     /**
      * Creates new form FrmGita
      */
@@ -150,13 +150,16 @@ public class FrmGita extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCreaGitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreaGitaActionPerformed
+        //controllo inserimento dati
         if(controlloTextBox()){
             JOptionPane.showMessageDialog(this, "Compila tutti i campi", "Errore", JOptionPane.ERROR_MESSAGE);
             return;
         }
+        //creazione gita
         int durata = Integer.valueOf(txtDurata.getText()), prezzo = Integer.valueOf(txtPrezzo.getText());
         Gita g = new Gita(txtDestinazione.getText(), durata, prezzo);
         g.setId(GestioneDatabase.inserisciGita(txtDestinazione.getText(), durata, prezzo));
+        GestioneGite.aggiungiGita(g);
         aggiornaTabella();
         System.out.println("Gita aggiunta");
     }//GEN-LAST:event_btnCreaGitaActionPerformed

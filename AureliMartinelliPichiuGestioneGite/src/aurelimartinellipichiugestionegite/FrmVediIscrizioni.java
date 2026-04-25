@@ -14,13 +14,14 @@ import javax.swing.table.DefaultTableModel;
 public class FrmVediIscrizioni extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmVediIscrizioni.class.getName());
-    private Studente s;
+    private Studente s; //studente di cui si vede le iscrizioni
     /**
      * Creates new form FrmVediIscrizione
      */
     public FrmVediIscrizioni(Studente s) {
         initComponents();
         this.s = s;
+        //configurazione componenti
         configuraLabel();
         configuraTabella();
     }
@@ -177,10 +178,12 @@ public class FrmVediIscrizioni extends javax.swing.JFrame {
 
     private void btnEliminaIscrizioneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminaIscrizioneActionPerformed
         int rigaSelezionata = tblVediIscrizioni.getSelectedRow();
+        //controllo selezione partecipazione
         if(rigaSelezionata == -1){
             JOptionPane.showMessageDialog(this, "Seleziona una gita", "Errore", JOptionPane.ERROR_MESSAGE);
             return;
         }
+        //eliminazione partecipazione
         Integer idGita = (Integer)tblVediIscrizioni.getValueAt(rigaSelezionata, 0);
         s.rimuoviGita(idGita);
         GestioneDatabase.rimuoviPartecipazione(s.getMatricola(), idGita);
@@ -188,17 +191,23 @@ public class FrmVediIscrizioni extends javax.swing.JFrame {
         modello.removeRow(rigaSelezionata);
     }//GEN-LAST:event_btnEliminaIscrizioneActionPerformed
 
+    /**
+     * Metodo per configurare le label
+     */
     private void configuraLabel(){
         lblNome.setText(s.getNome());
         lblCognome.setText(s.getCognome());
         lblClasse.setText(s.getClasse().toString());
     }
     
+    /**
+     * Metodo per configurare la tabella
+     */
     private void configuraTabella(){
         DefaultTableModel modello = (DefaultTableModel)tblVediIscrizioni.getModel();
         for(int id : s.getIdGita()){
             Gita g = GestioneGite.cercaPerId(id);
-            modello.addRow(new Object[]{g.getId(), g.getDestinazione(), g.getDurata(), g.getPrezzo()});
+            if(g != null)modello.addRow(new Object[]{g.getId(), g.getDestinazione(), g.getDurata(), g.getPrezzo()});
         }
     }
     
